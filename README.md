@@ -6,7 +6,9 @@ EnvPane is a preference pane for Mac OS X 10.8 (Mountain Lion) that lets you set
 Download
 --------
 
-Download the signed binary from Diary Products.
+[Download the signed binary from Diary Products] [8].
+
+[8]: http://diaryproducts.net/files/EnvPane.dmg
 
 Motivation
 ----------
