@@ -68,6 +68,10 @@ The uninstallation should be clean. I went to great lengths in ensuring that rem
 Changelog
 ---------
 
+### v0.2
+
+Fix: Preference pane failed to load, when ~/.MacOSX or ~/.MacOSX/environment.plist were missing ([issue #1] [10]).
+
 ### v0.1.1
 
 Improved documentation.
@@ -76,6 +80,7 @@ Improved documentation.
 
 Initial release.
 
+[10]: https://github.com/hschmidt/EnvPane/issues/1
 
 Building from source <a id="Building.from.source"></a>
 --------------------

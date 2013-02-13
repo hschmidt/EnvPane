@@ -17,6 +17,7 @@
 #import "EnvPane.h"
 #import "Constants.h"
 #import "AboutSheetController.h"
+#import "Error.h"
 
 #import <SecurityFoundation/SFAuthorization.h>
 #import <ServiceManagement/ServiceManagement.h>
@@ -60,8 +61,14 @@
 {
     Environment* environment = [Environment withArrayOfEntries: self.editableEnvironment];
     if( ![environment isEqualToEnvironment: savedEnvironment] ) {
-        [environment savePlist];
-        savedEnvironment = environment;
+        NSError* error = [environment savePlist];
+        if( error ) {
+            // revert
+            self.editableEnvironment = [savedEnvironment toArrayOfEntries];
+            [self presentError: error];
+        } else {
+            savedEnvironment = environment;
+        }
     }
 }
 
@@ -76,7 +83,7 @@
                                      appropriateForURL: nil
                                                 create: NO
                                                  error: &error];
-    if( !prefPanesUrl ) return error;
+    if( !prefPanesUrl ) return LogError( error );
 
     if( ![bundleUrl.absoluteString hasPrefix: prefPanesUrl.absoluteString] ) {
         return MakeError(
@@ -99,7 +106,7 @@
                                       appropriateForURL: nil
                                                  create: NO
                                                   error: &error];
-    if( !appSupportUrl ) return error;
+    if( !appSupportUrl ) return LogError( error );
 
     NSURL* agentAppSupportUrl = [appSupportUrl URLByAppendingPathComponent: agentLabel
                                                                isDirectory: YES];
@@ -109,15 +116,21 @@
     if( ![fileManager createDirectoryAtURL: agentAppSupportUrl
                withIntermediateDirectories: YES
                                 attributes: nil
-                                     error: &error] ) return error;
+                                     error: &error] ) {
+        return LogError( error );
+    }
 
     if( [fileManager fileExistsAtPath: agentExecutableLinkUrl.path] ) {
-        if( ![fileManager removeItemAtURL: agentExecutableLinkUrl error: &error] ) return error;
+        if( ![fileManager removeItemAtURL: agentExecutableLinkUrl error: &error] ) {
+            return LogError( error );
+        }
     }
 
     if( ![fileManager linkItemAtURL: agentExcutableUrl
                               toURL: agentExecutableLinkUrl
-                              error: &error] ) return error;
+                              error: &error] ) {
+        return LogError( error );
+    }
 
     /*
      * Read current agent configuration, if possible.
@@ -127,7 +140,7 @@
                                    appropriateForURL: nil
                                               create: NO
                                                error: &error];
-    if( !libraryUrl ) return error;
+    if( !libraryUrl ) return LogError( error );
 
     NSURL* agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
                                                        isDirectory: YES];
@@ -190,14 +203,6 @@
 - (void) presentError: (NSError*) error
 {
     [[NSApplication sharedApplication] presentError: error];
-}
-
-NSError* MakeError( NSString* message )
-{
-    NSLog( @"Preparing error object for '%@'", message );
-    return [NSError errorWithDomain: message
-                               code: 0
-                           userInfo: @{NSLocalizedDescriptionKey : message}];
 }
 
 - (IBAction) showReadme: (id) sender

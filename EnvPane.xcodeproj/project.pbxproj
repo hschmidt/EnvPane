@@ -18,6 +18,9 @@
 		D1334E3B16858FFC0018F00D /* Environment.m in Sources */ = {isa = PBXBuildFile; fileRef = D1334E3916858FFC0018F00D /* Environment.m */; };
 		D1334E3C168639270018F00D /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D1334E3E168699030018F00D /* EnvPane.icns in Resources */ = {isa = PBXBuildFile; fileRef = D1334E3D168699030018F00D /* EnvPane.icns */; };
+		D18C420916CC1DC700EF620B /* Error.h in Headers */ = {isa = PBXBuildFile; fileRef = D18C420816CC1DC700EF620B /* Error.h */; };
+		D18C420A16CC1DC700EF620B /* Error.h in Headers */ = {isa = PBXBuildFile; fileRef = D18C420816CC1DC700EF620B /* Error.h */; };
+		D18C420C16CC1E0C00EF620B /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D18C420B16CC1E0C00EF620B /* Error.m */; };
 		D197F2191683EF98001CD067 /* net.hannesschmidt.EnvAgent.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2ADE0C2083951BC000B79B2 /* net.hannesschmidt.EnvAgent.plist */; };
 		D19BDB5F1671286100C6467B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19BDB5E1671286100C6467B /* Cocoa.framework */; };
 		D19BDB611671286100C6467B /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19BDB601671286100C6467B /* PreferencePanes.framework */; };
@@ -95,6 +98,8 @@
 		D1334E3816858FFC0018F00D /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		D1334E3916858FFC0018F00D /* Environment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Environment.m; sourceTree = "<group>"; };
 		D1334E3D168699030018F00D /* EnvPane.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = EnvPane.icns; sourceTree = "<group>"; };
+		D18C420816CC1DC700EF620B /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		D18C420B16CC1E0C00EF620B /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		D19BDB5C1671286100C6467B /* EnvPane.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnvPane.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		D19BDB5E1671286100C6467B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D19BDB601671286100C6467B /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = System/Library/Frameworks/PreferencePanes.framework; sourceTree = SDKROOT; };
@@ -222,6 +227,8 @@
 				D1334E3816858FFC0018F00D /* Environment.h */,
 				D1334E3916858FFC0018F00D /* Environment.m */,
 				D1F739A0168D3E6B009F8342 /* Constants.h */,
+				D18C420816CC1DC700EF620B /* Error.h */,
+				D18C420B16CC1E0C00EF620B /* Error.m */,
 			);
 			path = EnvLib;
 			sourceTree = "<group>";
@@ -262,6 +269,7 @@
 				D131365D16771BBD0059AF76 /* EnvVarsDragController.h in Headers */,
 				D1F739A1168D3E6B009F8342 /* Constants.h in Headers */,
 				D1EFCA54169240E000013C1A /* AboutSheetController.h in Headers */,
+				D18C420916CC1DC700EF620B /* Error.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +279,7 @@
 			files = (
 				D1334E3A16858FFC0018F00D /* Environment.h in Headers */,
 				D1F739A2168D3E6B009F8342 /* Constants.h in Headers */,
+				D18C420A16CC1DC700EF620B /* Error.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1334E3B16858FFC0018F00D /* Environment.m in Sources */,
+				D18C420C16CC1E0C00EF620B /* Error.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
