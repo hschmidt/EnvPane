@@ -137,6 +137,8 @@ void envlib_unsetenv( const char *key )
         NSString * oldVariables = [NSString stringWithCString: pcOldVariables
                                                      encoding: NSUTF8StringEncoding];
         deletedVariables = [NSMutableSet setWithArray: [oldVariables componentsSeparatedByString: @" "]];
+        // in case oldVariables was empty or had multiple consecutive separators:
+        [deletedVariables removeObject:@""];
     }
     /*
      * Initialize the set of variables to an empty array. Using an array is ok

@@ -68,6 +68,10 @@ The uninstallation should be clean. I went to great lengths in ensuring that rem
 Changelog
 ---------
 
+### unreleased
+
+Fix: envlib_unsetenv() is invoked unnecessarily with empty string if environment is empty ([issue #3] [12])
+
 ### v0.3
 
 Fix: Preference pane fails to load if ~/Library/LaunchAgents is missing ([issue #2] [11])
@@ -86,6 +90,7 @@ Initial release.
 
 [10]: https://github.com/hschmidt/EnvPane/issues/1
 [11]: https://github.com/hschmidt/EnvPane/issues/2
+[12]: https://github.com/hschmidt/EnvPane/issues/3
 
 Building from source <a id="Building.from.source"></a>
 --------------------
