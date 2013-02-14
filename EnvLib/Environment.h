@@ -42,7 +42,7 @@
 /**
  * Saves the environment variables to ~/.MacOSX/environment.plist.
  */
-- ( NSError* ) savePlist;
+- (BOOL) savePlist: (NSError**) error;
 
 /**
  * Returns an array of the form expected by withArrayOfEntries: containing the

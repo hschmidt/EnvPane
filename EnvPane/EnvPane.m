@@ -18,6 +18,7 @@
 #import "Constants.h"
 #import "AboutSheetController.h"
 #import "Error.h"
+#import "NSDictionary+EnvLib.h"
 
 #import <SecurityFoundation/SFAuthorization.h>
 #import <ServiceManagement/ServiceManagement.h>
@@ -33,8 +34,11 @@
 {
     savedEnvironment = [Environment loadPlist];
     self.editableEnvironment = [savedEnvironment toArrayOfEntries];
-    NSError* error = [self installAgent];
-    if( error ) [self presentError: error];
+    NSError* error = nil;
+    if( ![self installAgent: &error] ) {
+        LogError( error );
+        [self presentError: error];
+    };
 }
 
 - (void) didSelect
@@ -61,20 +65,20 @@
 {
     Environment* environment = [Environment withArrayOfEntries: self.editableEnvironment];
     if( ![environment isEqualToEnvironment: savedEnvironment] ) {
-        NSError* error = [environment savePlist];
-        if( error ) {
+        NSError* error = nil;
+        if( [environment savePlist: &error] ) {
+            savedEnvironment = environment;
+        } else {
+            LogError( error );
             // revert
             self.editableEnvironment = [savedEnvironment toArrayOfEntries];
-            [self presentError: error];
-        } else {
-            savedEnvironment = environment;
+            [self presentError: error ];
         }
     }
 }
 
-- (NSError*) installAgent
+- (BOOL) installAgent: (NSError**) error
 {
-    NSError* error = nil;
     NSBundle* bundle = self.bundle;
     NSURL* bundleUrl = bundle.bundleURL;
     NSFileManager* fileManager = NSFileManager.defaultManager;
@@ -82,14 +86,14 @@
                                               inDomain: NSUserDomainMask
                                      appropriateForURL: nil
                                                 create: NO
-                                                 error: &error];
-    if( !prefPanesUrl ) return LogError( error );
+                                                 error: error];
+    if( !prefPanesUrl ) return NO;
 
     if( ![bundleUrl.absoluteString hasPrefix: prefPanesUrl.absoluteString] ) {
-        return MakeError(
-            @"This preference pane must be installed for each user individually. "
-            "Installation for all users is currently not supported. Remove this preference pane "
-            "and then reinstall it, this time for the current user only." );
+        return NO_AssignError( error, NewError(
+                                   @"This preference pane must be installed for each user individually. "
+                                   "Installation for all users is currently not supported. Remove this preference pane "
+                                   "and then reinstall it, this time for the current user only." ) );
     }
 
     /*
@@ -99,14 +103,16 @@
      * itself in that case.
      */
     NSURL* agentExcutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
-    if( agentExcutableUrl == nil ) return MakeError( @"Can't find agent executable" );
+    if( agentExcutableUrl == nil ) {
+        return NO_AssignError( error, NewError( @"Can't find agent executable" ) );
+    }
 
     NSURL* appSupportUrl = [fileManager URLForDirectory: NSApplicationSupportDirectory
                                                inDomain: NSUserDomainMask
                                       appropriateForURL: nil
                                                  create: NO
-                                                  error: &error];
-    if( !appSupportUrl ) return LogError( error );
+                                                  error: error];
+    if( !appSupportUrl ) return NO;
 
     NSURL* agentAppSupportUrl = [appSupportUrl URLByAppendingPathComponent: agentLabel
                                                                isDirectory: YES];
@@ -116,21 +122,16 @@
     if( ![fileManager createDirectoryAtURL: agentAppSupportUrl
                withIntermediateDirectories: YES
                                 attributes: nil
-                                     error: &error] ) {
-        return LogError( error );
-    }
+                                     error: error] ) return NO;
 
     if( [fileManager fileExistsAtPath: agentExecutableLinkUrl.path] ) {
-        if( ![fileManager removeItemAtURL: agentExecutableLinkUrl error: &error] ) {
-            return LogError( error );
-        }
+        if( ![fileManager removeItemAtURL: agentExecutableLinkUrl
+                                    error: error] ) return NO;
     }
 
     if( ![fileManager linkItemAtURL: agentExcutableUrl
                               toURL: agentExecutableLinkUrl
-                              error: &error] ) {
-        return LogError( error );
-    }
+                              error: error] ) return NO;
 
     /*
      * Read current agent configuration, if possible.
@@ -139,8 +140,8 @@
                                             inDomain: NSUserDomainMask
                                    appropriateForURL: nil
                                               create: NO
-                                               error: &error];
-    if( !libraryUrl ) return LogError( error );
+                                               error: error];
+    if( !libraryUrl ) return NO;
 
     NSURL* agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
                                                        isDirectory: YES];
@@ -159,7 +160,9 @@
      */
     NSURL* agentConfTemplateUrl = [bundle.sharedSupportURL URLByAppendingPathComponent: agentConfName];
     NSDictionary* newAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfTemplateUrl];
-    if( newAgentConf == nil ) return MakeError( @"Can't load job description template" );
+    if( newAgentConf == nil ) {
+        return NO_AssignError( error, NewError( @"Can't load job description template" ) );
+    }
 
     [newAgentConf setValue: @[ agentExecutableLinkUrl.path ]
                     forKey: @"ProgramArguments"];
@@ -181,8 +184,10 @@
         }
 
         if( ![newAgentConf writeToFile: agentConfUrl.path
-                            atomically: YES] ) {
-            return MakeError( @"Failed to write agent's launchd job description." );
+                            atomically: YES
+                          createParent: YES
+                       createAncestors: NO error: error] ) {
+            return NO_AssignError( error, NewError( @"Failed to write agent's launchd job description." ) );
         }
         task = [NSTask launchedTaskWithLaunchPath: launchctlPath
                                         arguments: @[ @"load", agentConfUrl.path ]];
@@ -194,10 +199,11 @@
                                         arguments: @[ @"start", agentLabel ]];
     }
     [task waitUntilExit];
-    if( task.terminationStatus != 0 ) return MakeError( @"Failed to load/start agent" );
+    if( task.terminationStatus != 0 ) {
+        return NO_AssignError( error, NewError( @"Failed to load/start agent" ) );
+    }
 
-    self.agentInstalled = YES;
-    return nil;
+    return self.agentInstalled = YES;
 }
 
 - (void) presentError: (NSError*) error

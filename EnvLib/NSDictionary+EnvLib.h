@@ -14,30 +14,14 @@
  * limitations under the License.
  */
 
-#import "Error.h"
+#import <Foundation/Foundation.h>
 
+@interface NSDictionary (EnvLib)
 
-NSError* LogError( NSError *error )
-{
-    NSLog( @"Error: %@", error );
-    return error;
-}
+- (BOOL) writeToFile: (NSString *) path
+          atomically: (BOOL) atomically
+        createParent: (BOOL) createParent
+     createAncestors: (BOOL) createAncestors
+               error: (NSError **) error;
 
-NSError* NewError( NSString* message )
-{
-    return [NSError errorWithDomain: @"EnvLib"
-                               code: 0
-                           userInfo: @{NSLocalizedDescriptionKey : message}];
-}
-
-BOOL NO_AssignError( NSError **dst, NSError *src )
-{
-    if( dst ) *dst = src;
-    return NO;
-}
-
-BOOL NO_LogError( NSError **error )
-{
-    if( error ) LogError( *error );
-    return NO;
-}
+@end

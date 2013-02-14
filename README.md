@@ -9,7 +9,7 @@ Download
 
 For convenience, the pre-built and code-signed binary of EnvPane can be [downloaded] [8] from my blog Diary Products. Alternatively you might want to grab the [source] [9] and [build it yourself] [11].
 
-[8]: http://diaryproducts.net/files/EnvPane.dmg
+[8]: http://diaryproducts.net/files/EnvPane-0.3.dmg
 [11]: #Building.from.source
 
 <!-- break -->
@@ -68,9 +68,13 @@ The uninstallation should be clean. I went to great lengths in ensuring that rem
 Changelog
 ---------
 
+### v0.3
+
+Fix: Preference pane fails to load if ~/Library/LaunchAgents is missing ([issue #2] [11])
+
 ### v0.2
 
-Fix: Preference pane failed to load, when ~/.MacOSX or ~/.MacOSX/environment.plist were missing ([issue #1] [10]).
+Fix: Preference pane fails to load if ~/.MacOSX or ~/.MacOSX/environment.plist are missing ([issue #1] [10]).
 
 ### v0.1.1
 
@@ -81,6 +85,7 @@ Improved documentation.
 Initial release.
 
 [10]: https://github.com/hschmidt/EnvPane/issues/1
+[11]: https://github.com/hschmidt/EnvPane/issues/2
 
 Building from source <a id="Building.from.source"></a>
 --------------------

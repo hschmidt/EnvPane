@@ -16,6 +16,9 @@
 
 #import "Environment.h"
 #import "Error.h"
+#import "NSFileManager+EnvLib.h"
+#import "NSDictionary+EnvLib.h"
+
 #include "Constants.h"
 
 #include <errno.h>
@@ -52,28 +55,13 @@ static NSString* savedEnvironmentPath;
     return [[self alloc] initWithDictionary: dict == nil ? @{}: dict];
 }
 
-- (NSError*) savePlist
+- (BOOL) savePlist: (NSError**) error
 {
-    NSFileManager* fileManager = [NSFileManager defaultManager];
-    NSString* parent = [savedEnvironmentPath stringByDeletingLastPathComponent];
-    BOOL isDir = NO;
-    if( ![fileManager fileExistsAtPath: parent isDirectory: &isDir] ) {
-        NSError* error = nil;
-        if( ![fileManager createDirectoryAtPath: parent
-                    withIntermediateDirectories: NO
-                                     attributes: nil
-                                          error: &error] ) {
-            return LogError( error );
-        }
-    } else {
-        if( !isDir ) {
-            return MakeError( [NSString stringWithFormat:@"Expected directory at '%@'", parent] );
-        }
-    }
-    if( ![_dict writeToFile: savedEnvironmentPath atomically: YES] ) {
-        return MakeError( [NSString stringWithFormat: @"Can't write to '%@'", savedEnvironmentPath ] );
-    }
-    return nil;
+    return [_dict writeToFile: savedEnvironmentPath
+                   atomically: YES
+                 createParent: YES
+              createAncestors: NO
+                        error: error];
 }
 
 - (NSMutableArray*) toArrayOfEntries
