@@ -79,8 +79,7 @@
 
 - (BOOL) installAgent: (NSError**) error
 {
-    NSBundle* bundle = self.bundle;
-    NSURL* bundleUrl = bundle.bundleURL;
+    NSString* homeDirectory = NSHomeDirectory();
     NSFileManager* fileManager = NSFileManager.defaultManager;
     NSURL* prefPanesUrl = [fileManager URLForDirectory: NSPreferencePanesDirectory
                                               inDomain: NSUserDomainMask
@@ -89,7 +88,8 @@
                                                  error: error];
     if( !prefPanesUrl ) return NO;
 
-    if( ![bundleUrl.absoluteString hasPrefix: prefPanesUrl.absoluteString] ) {
+    NSRange range = [[prefPanesUrl absoluteString] rangeOfString:homeDirectory];
+    if( range.location == NSNotFound ) {
         return NO_AssignError( error, NewError(
                                    @"This preference pane must be installed for each user individually. "
                                    "Installation for all users is currently not supported. Remove this preference pane "
@@ -102,6 +102,7 @@
      * the preference pane is deleted, enabling the agent to self-destruct
      * itself in that case.
      */
+    NSBundle* bundle = [self bundle];
     NSURL* agentExcutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
     if( agentExcutableUrl == nil ) {
         return NO_AssignError( error, NewError( @"Can't find agent executable" ) );
@@ -166,7 +167,7 @@
 
     [newAgentConf setValue: @[ agentExecutableLinkUrl.path ]
                     forKey: @"ProgramArguments"];
-    [newAgentConf setValue: @[ bundleUrl.path, [Environment savedEnvironmentPath]]
+    [newAgentConf setValue: @[ [[bundle bundleURL] path], [Environment savedEnvironmentPath]]
                     forKey: @"WatchPaths"];
 
     /*
