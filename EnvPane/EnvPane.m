@@ -196,12 +196,25 @@
         /*
          * ... otherwise start agent.
          */
+      
+        /*
+         * For some reason, subsequent launches of the preference pane are not
+         * finding the agent as loaded. So we load it every time just to
+         * force it to work.
+         */
+        task = [NSTask launchedTaskWithLaunchPath: launchctlPath
+                                        arguments:@[ @"load", [agentConfUrl path]]];
+        [task waitUntilExit];
+        if (task.terminationStatus != 0) {
+          return NO_AssignError(error, NewError(@"Failed to load agent"));
+        }
+      
         task = [NSTask launchedTaskWithLaunchPath: launchctlPath
                                         arguments: @[ @"start", agentLabel ]];
     }
     [task waitUntilExit];
     if( task.terminationStatus != 0 ) {
-        return NO_AssignError( error, NewError( @"Failed to load/start agent" ) );
+        return NO_AssignError( error, NewError( @"Failed to start agent" ) );
     }
 
     return self.agentInstalled = YES;
