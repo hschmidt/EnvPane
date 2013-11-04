@@ -23,6 +23,10 @@
 #import <SecurityFoundation/SFAuthorization.h>
 #import <ServiceManagement/ServiceManagement.h>
 
+@interface EnvPane ()
+- (BOOL) homeDirectoryIsSymlink;
+@end
+
 @implementation EnvPane
 
 - (void) awakeFromNib
@@ -79,7 +83,8 @@
 
 - (BOOL) installAgent: (NSError**) error
 {
-    NSString* homeDirectory = NSHomeDirectory();
+    NSBundle* bundle = self.bundle;
+    NSURL* bundleUrl = bundle.bundleURL;
     NSFileManager* fileManager = NSFileManager.defaultManager;
     NSURL* prefPanesUrl = [fileManager URLForDirectory: NSPreferencePanesDirectory
                                               inDomain: NSUserDomainMask
@@ -88,7 +93,14 @@
                                                  error: error];
     if( !prefPanesUrl ) return NO;
 
-    NSRange range = [[prefPanesUrl absoluteString] rangeOfString:homeDirectory];
+    NSRange range;
+    if ([self homeDirectoryIsSymlink]) {
+      NSString* panesPath = [[prefPanesUrl absoluteString] substringFromIndex:7];
+      range = [[bundleUrl absoluteString] rangeOfString:panesPath];
+    } else {
+      range = [[bundleUrl absoluteString] rangeOfString:[prefPanesUrl absoluteString]];
+    }
+  
     if( range.location == NSNotFound ) {
         return NO_AssignError( error, NewError(
                                    @"This preference pane must be installed for each user individually. "
@@ -102,7 +114,6 @@
      * the preference pane is deleted, enabling the agent to self-destruct
      * itself in that case.
      */
-    NSBundle* bundle = [self bundle];
     NSURL* agentExcutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
     if( agentExcutableUrl == nil ) {
         return NO_AssignError( error, NewError( @"Can't find agent executable" ) );
@@ -228,6 +239,14 @@
 - (IBAction) showReadme: (id) sender
 {
     [[AboutSheetController sheetControllerWithBundle: self.bundle] loadView];
+}
+
+- (BOOL) homeDirectoryIsSymlink
+{
+    NSFileManager* fileManager = NSFileManager.defaultManager;
+    NSError* error = nil;
+    NSDictionary* attributes = [fileManager attributesOfItemAtPath:NSHomeDirectory() error:&error];
+    return attributes[NSFileType] == NSFileTypeSymbolicLink;
 }
 
 @end
