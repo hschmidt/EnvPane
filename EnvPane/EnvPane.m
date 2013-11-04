@@ -23,6 +23,10 @@
 #import <SecurityFoundation/SFAuthorization.h>
 #import <ServiceManagement/ServiceManagement.h>
 
+@interface EnvPane ()
+- (BOOL) homeDirectoryIsSymlink;
+@end
+
 @implementation EnvPane
 
 - (void) awakeFromNib
@@ -89,7 +93,15 @@
                                                  error: error];
     if( !prefPanesUrl ) return NO;
 
-    if( ![bundleUrl.absoluteString hasPrefix: prefPanesUrl.absoluteString] ) {
+    NSRange range;
+    if ([self homeDirectoryIsSymlink]) {
+      NSString* panesPath = [[prefPanesUrl absoluteString] substringFromIndex:7];
+      range = [[bundleUrl absoluteString] rangeOfString:panesPath];
+    } else {
+      range = [[bundleUrl absoluteString] rangeOfString:[prefPanesUrl absoluteString]];
+    }
+  
+    if( range.location == NSNotFound ) {
         return NO_AssignError( error, NewError(
                                    @"This preference pane must be installed for each user individually. "
                                    "Installation for all users is currently not supported. Remove this preference pane "
@@ -166,7 +178,7 @@
 
     [newAgentConf setValue: @[ agentExecutableLinkUrl.path ]
                     forKey: @"ProgramArguments"];
-    [newAgentConf setValue: @[ bundleUrl.path, [Environment savedEnvironmentPath]]
+    [newAgentConf setValue: @[ [[bundle bundleURL] path], [Environment savedEnvironmentPath]]
                     forKey: @"WatchPaths"];
 
     /*
@@ -195,12 +207,25 @@
         /*
          * ... otherwise start agent.
          */
+      
+        /*
+         * For some reason, subsequent launches of the preference pane are not
+         * finding the agent as loaded. So we load it every time just to
+         * force it to work.
+         */
+        task = [NSTask launchedTaskWithLaunchPath: launchctlPath
+                                        arguments:@[ @"load", [agentConfUrl path]]];
+        [task waitUntilExit];
+        if (task.terminationStatus != 0) {
+          return NO_AssignError(error, NewError(@"Failed to load agent"));
+        }
+      
         task = [NSTask launchedTaskWithLaunchPath: launchctlPath
                                         arguments: @[ @"start", agentLabel ]];
     }
     [task waitUntilExit];
     if( task.terminationStatus != 0 ) {
-        return NO_AssignError( error, NewError( @"Failed to load/start agent" ) );
+        return NO_AssignError( error, NewError( @"Failed to start agent" ) );
     }
 
     return self.agentInstalled = YES;
@@ -214,6 +239,14 @@
 - (IBAction) showReadme: (id) sender
 {
     [[AboutSheetController sheetControllerWithBundle: self.bundle] loadView];
+}
+
+- (BOOL) homeDirectoryIsSymlink
+{
+    NSFileManager* fileManager = NSFileManager.defaultManager;
+    NSError* error = nil;
+    NSDictionary* attributes = [fileManager attributesOfItemAtPath:NSHomeDirectory() error:&error];
+    return attributes[NSFileType] == NSFileTypeSymbolicLink;
 }
 
 @end
