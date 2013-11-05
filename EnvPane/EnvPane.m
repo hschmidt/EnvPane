@@ -89,6 +89,9 @@
                                                  error: error];
     if( !prefPanesUrl ) return NO;
 
+    prefPanesUrl = [prefPanesUrl URLByResolvingSymlinksInPath];
+    bundleUrl = [bundleUrl URLByResolvingSymlinksInPath];
+
     if( ![bundleUrl.absoluteString hasPrefix: prefPanesUrl.absoluteString] ) {
         return NO_AssignError( error, NewError(
                                    @"This preference pane must be installed for each user individually. "
