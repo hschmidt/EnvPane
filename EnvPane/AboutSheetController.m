@@ -68,11 +68,14 @@
 
 - (void) beginSheet
 {
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     [NSApp beginSheet: self.sheet
        modalForWindow: [NSApp mainWindow]
         modalDelegate: self
        didEndSelector: @selector( didEndSheet:returnCode:contextInfo: )
           contextInfo: NULL];
+    #pragma GCC diagnostic pop
 }
 
 
