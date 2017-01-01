@@ -52,7 +52,8 @@ static NSString* savedEnvironmentPath;
 + (Environment*) loadPlist
 {
     NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile: savedEnvironmentPath];
-    return [[self alloc] initWithDictionary: dict == nil ? @{}: dict];
+    Environment* env = [self alloc];
+    return [env initWithDictionary: dict == nil ? @{}: dict];
 }
 
 - (BOOL) savePlist: (NSError**) error
@@ -73,15 +74,17 @@ static NSString* savedEnvironmentPath;
     return array;
 }
 
-+ (NSDictionary*) withArrayOfEntries: (NSArray*) array
++ (Environment*) withArrayOfEntries: (NSArray*) array
 {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity: [array count]];
+    NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithCapacity: [array count]];
     [array enumerateObjectsUsingBlock: ^ ( NSDictionary *entry, NSUInteger idx, BOOL *stop ) {
          NSString *key = [entry valueForKey: @"name"];
          NSString *value = [entry valueForKey: @"value"];
-         if( key != nil && value != nil ) [dict setObject: value forKey: key];
+         if( key != nil && value != nil ) [mutDict setObject: value forKey: key];
      }];
-    return [[self alloc] initWithDictionary: [NSDictionary dictionaryWithDictionary: dict]];
+    Environment* env = [self alloc];
+    NSDictionary* dict = [NSDictionary dictionaryWithDictionary: mutDict];
+    return [env initWithDictionary: dict];
 }
 
 void envlib_setenv( const char *key, const char *value )

@@ -211,7 +211,8 @@
 
 - (void) presentError: (NSError*) error
 {
-    [[NSApplication sharedApplication] presentError: error];
+    NSApplication* app = [NSApplication sharedApplication];
+    [app presentError: error];
 }
 
 - (IBAction) showReadme: (id) sender
