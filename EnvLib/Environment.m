@@ -87,44 +87,48 @@ static NSString* savedEnvironmentPath;
     return [env initWithDictionary: dict];
 }
 
-void envlib_setenv( const char *key, const char *value )
-{
-    launch_data_t request, entry, valueData, response;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
-    request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
-    entry = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
-    valueData = launch_data_new_string( value );
-    launch_data_dict_insert( entry, valueData, key );
-    launch_data_dict_insert( request, entry, LAUNCH_KEY_SETUSERENVIRONMENT );
+    void envlib_setenv( const char *key, const char *value )
+    {
+        launch_data_t request, entry, valueData, response;
 
-    response = launch_msg( request );
-    launch_data_free( request );
+        request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
+        entry = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
+        valueData = launch_data_new_string( value );
+        launch_data_dict_insert( entry, valueData, key );
+        launch_data_dict_insert( request, entry, LAUNCH_KEY_SETUSERENVIRONMENT );
 
-    if( response ) {
-        launch_data_free( response );
-    } else {
-        NSLog( @"launch_msg( \"%s\" ): %s", LAUNCH_KEY_SETUSERENVIRONMENT, strerror( errno ) );
+        response = launch_msg( request );
+        launch_data_free( request );
+
+        if( response ) {
+            launch_data_free( response );
+        } else {
+            NSLog( @"launch_msg( \"%s\" ): %s", LAUNCH_KEY_SETUSERENVIRONMENT, strerror( errno ) );
+        }
     }
-}
 
-void envlib_unsetenv( const char *key )
-{
-    launch_data_t request, keyData, response;
+    void envlib_unsetenv( const char *key )
+    {
+        launch_data_t request, keyData, response;
 
-    request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
-    keyData = launch_data_new_string( key );
-    launch_data_dict_insert( request, keyData, LAUNCH_KEY_UNSETUSERENVIRONMENT );
+        request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
+        keyData = launch_data_new_string( key );
+        launch_data_dict_insert( request, keyData, LAUNCH_KEY_UNSETUSERENVIRONMENT );
 
-    response = launch_msg( request );
-    launch_data_free( request );
+        response = launch_msg( request );
+        launch_data_free( request );
 
-    if( response ) {
-        launch_data_free( response );
-    } else {
-        NSLog( @"launch_msg( \"%s\" ): %s", LAUNCH_KEY_UNSETUSERENVIRONMENT, strerror( errno ) );
+        if( response ) {
+            launch_data_free( response );
+        } else {
+            NSLog( @"launch_msg( \"%s\" ): %s", LAUNCH_KEY_UNSETUSERENVIRONMENT, strerror( errno ) );
+        }
     }
-}
 
+#pragma GCC diagnostic pop
 
 - (void) export
 {
