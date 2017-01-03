@@ -18,6 +18,8 @@
 #include <xpc/xpc.h>
 #include "log.h"
 
+// Much of this is taken from http://newosxbook.com/articles/jlaunchctl.html by Jonathan Levin.
+
 struct xpc_global_data {
     uint64_t	a;
     uint64_t	xpc_flags;

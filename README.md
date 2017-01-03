@@ -254,3 +254,9 @@ Terminal.
 
     This product includes software developed by
     David Loren Parsons <http://www.pell.portland.or.us/~orc>
+
+## Acknowledgements
+
+Kudos to Jonathan Levin for his [reversing][new_launchd] of the new launchd and launchctl. I used the trial version of the [Hopper Disassembler/debugger for OS X][hopper] to figure out the rest.
+
+[hopper]: https://www.hopperapp.com/
