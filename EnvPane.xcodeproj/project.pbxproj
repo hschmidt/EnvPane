@@ -22,6 +22,11 @@
 		D154535216CC4045008A3ADB /* NSFileManager+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D154535016CC4045008A3ADB /* NSFileManager+EnvLib.m */; };
 		D154535516CC74AB008A3ADB /* NSDictionary+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = D154535316CC74AB008A3ADB /* NSDictionary+EnvLib.h */; };
 		D154535616CC74AB008A3ADB /* NSDictionary+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D154535416CC74AB008A3ADB /* NSDictionary+EnvLib.m */; };
+		D167214C1E1B039900743608 /* launchd_xpc.c in Sources */ = {isa = PBXBuildFile; fileRef = D167214A1E1B039900743608 /* launchd_xpc.c */; };
+		D167214D1E1B039900743608 /* launchd_xpc.h in Headers */ = {isa = PBXBuildFile; fileRef = D167214B1E1B039900743608 /* launchd_xpc.h */; };
+		D16721501E1B148400743608 /* launchd_legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = D167214E1E1B148400743608 /* launchd_legacy.c */; };
+		D16721511E1B148400743608 /* launchd_legacy.h in Headers */ = {isa = PBXBuildFile; fileRef = D167214F1E1B148400743608 /* launchd_legacy.h */; };
+		D16721551E1B2ECA00743608 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = D16721531E1B2ECA00743608 /* log.h */; };
 		D18C420A16CC1DC700EF620B /* Error.h in Headers */ = {isa = PBXBuildFile; fileRef = D18C420816CC1DC700EF620B /* Error.h */; };
 		D18C420C16CC1E0C00EF620B /* Error.m in Sources */ = {isa = PBXBuildFile; fileRef = D18C420B16CC1E0C00EF620B /* Error.m */; };
 		D197F2191683EF98001CD067 /* net.hannesschmidt.EnvAgent.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2ADE0C2083951BC000B79B2 /* net.hannesschmidt.EnvAgent.plist */; };
@@ -104,6 +109,11 @@
 		D154535016CC4045008A3ADB /* NSFileManager+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+EnvLib.m"; sourceTree = "<group>"; };
 		D154535316CC74AB008A3ADB /* NSDictionary+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EnvLib.h"; sourceTree = "<group>"; };
 		D154535416CC74AB008A3ADB /* NSDictionary+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EnvLib.m"; sourceTree = "<group>"; };
+		D167214A1E1B039900743608 /* launchd_xpc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = launchd_xpc.c; sourceTree = "<group>"; };
+		D167214B1E1B039900743608 /* launchd_xpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launchd_xpc.h; sourceTree = "<group>"; };
+		D167214E1E1B148400743608 /* launchd_legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = launchd_legacy.c; sourceTree = "<group>"; };
+		D167214F1E1B148400743608 /* launchd_legacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = launchd_legacy.h; sourceTree = "<group>"; };
+		D16721531E1B2ECA00743608 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
 		D18C420816CC1DC700EF620B /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
 		D18C420B16CC1E0C00EF620B /* Error.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Error.m; sourceTree = "<group>"; };
 		D19BDB5C1671286100C6467B /* EnvPane.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EnvPane.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +179,7 @@
 		D19BDB5D1671286100C6467B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1EFCA5016912C6600013C1A /* WebKit.framework */,
 				D10BFDE21688E81600C6A4CF /* ServiceManagement.framework */,
 				D10BFDDB1688DE0B00C6A4CF /* SecurityFoundation.framework */,
 				D1E16E66167292D100724499 /* CoreFoundation.framework */,
@@ -239,6 +250,11 @@
 				D154535016CC4045008A3ADB /* NSFileManager+EnvLib.m */,
 				D154535316CC74AB008A3ADB /* NSDictionary+EnvLib.h */,
 				D154535416CC74AB008A3ADB /* NSDictionary+EnvLib.m */,
+				D167214A1E1B039900743608 /* launchd_xpc.c */,
+				D167214B1E1B039900743608 /* launchd_xpc.h */,
+				D167214E1E1B148400743608 /* launchd_legacy.c */,
+				D167214F1E1B148400743608 /* launchd_legacy.h */,
+				D16721531E1B2ECA00743608 /* log.h */,
 			);
 			path = EnvLib;
 			sourceTree = "<group>";
@@ -246,7 +262,6 @@
 		E2ADE09E08395023000B79B2 = {
 			isa = PBXGroup;
 			children = (
-				D1EFCA5016912C6600013C1A /* WebKit.framework */,
 				D1FC1DBC168F90AB004F5901 /* README.md */,
 				D1F739AE168F7F40009F8342 /* NOTICE */,
 				D1F739AD168EFA01009F8342 /* LICENSE */,
@@ -287,9 +302,12 @@
 			files = (
 				D1334E3A16858FFC0018F00D /* Environment.h in Headers */,
 				D1F739A2168D3E6B009F8342 /* Constants.h in Headers */,
+				D167214D1E1B039900743608 /* launchd_xpc.h in Headers */,
 				D18C420A16CC1DC700EF620B /* Error.h in Headers */,
 				D154535116CC4045008A3ADB /* NSFileManager+EnvLib.h in Headers */,
+				D16721551E1B2ECA00743608 /* log.h in Headers */,
 				D154535516CC74AB008A3ADB /* NSDictionary+EnvLib.h in Headers */,
+				D16721511E1B148400743608 /* launchd_legacy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +440,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1334E3B16858FFC0018F00D /* Environment.m in Sources */,
+				D167214C1E1B039900743608 /* launchd_xpc.c in Sources */,
+				D16721501E1B148400743608 /* launchd_legacy.c in Sources */,
 				D18C420C16CC1E0C00EF620B /* Error.m in Sources */,
 				D154535216CC4045008A3ADB /* NSFileManager+EnvLib.m in Sources */,
 				D154535616CC74AB008A3ADB /* NSDictionary+EnvLib.m in Sources */,

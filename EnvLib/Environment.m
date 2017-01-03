@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2012, 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,8 @@
 
 #include "Constants.h"
 
-#include <errno.h>
-
-#include "launch_priv.h"
+#include "launchd_xpc.h"
+#include "launchd_legacy.h"
 
 @implementation Environment
 
@@ -87,48 +86,7 @@ static NSString* savedEnvironmentPath;
     return [env initWithDictionary: dict];
 }
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
-    void envlib_setenv( const char *key, const char *value )
-    {
-        launch_data_t request, entry, valueData, response;
-
-        request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
-        entry = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
-        valueData = launch_data_new_string( value );
-        launch_data_dict_insert( entry, valueData, key );
-        launch_data_dict_insert( request, entry, LAUNCH_KEY_SETUSERENVIRONMENT );
-
-        response = launch_msg( request );
-        launch_data_free( request );
-
-        if( response ) {
-            launch_data_free( response );
-        } else {
-            NSLog( @"launch_msg( \"%s\" ): %s", LAUNCH_KEY_SETUSERENVIRONMENT, strerror( errno ) );
-        }
-    }
-
-    void envlib_unsetenv( const char *key )
-    {
-        launch_data_t request, keyData, response;
-
-        request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
-        keyData = launch_data_new_string( key );
-        launch_data_dict_insert( request, keyData, LAUNCH_KEY_UNSETUSERENVIRONMENT );
-
-        response = launch_msg( request );
-        launch_data_free( request );
-
-        if( response ) {
-            launch_data_free( response );
-        } else {
-            NSLog( @"launch_msg( \"%s\" ): %s", LAUNCH_KEY_UNSETUSERENVIRONMENT, strerror( errno ) );
-        }
-    }
-
-#pragma GCC diagnostic pop
 
 - (void) export
 {
@@ -157,28 +115,48 @@ static NSString* savedEnvironmentPath;
      * Iterate over each variable in the new environment and ...
      */
     [_dict enumerateKeysAndObjectsUsingBlock: ^ ( NSString *key, NSString *value, BOOL *stop ) {
-         if( value != nil ) {
-             /*
-              * ... export the variable, ...
-              */
-             NSLog( @"Setting '%@' to '%@'", key, value );
-             envlib_setenv( key.UTF8String, value.UTF8String );
-             /*
-              * ... remove it from the variables to be deleted, ...
-              */
-             [deletedVariables removeObject: key];
-             /*
-              * ... and add it to the list of variables for book-keeping.
-              */
-             [variables addObject: key];
+        if( value != nil ) {
+            /*
+             * ... export the variable, ...
+             */
+            if( kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber10_10 ) {
+                NSLog( @"Setting '%@' to '%@' using legacy launchd API.", key, value );
+                envlib_setenv( key.UTF8String, value.UTF8String );
+            } else {
+                NSLog( @"Setting '%@' to '%@' using XPC launchd API.", key, value );
+                EnvEntry env[2];
+                env[0].name = key.UTF8String;
+                env[0].value = value.UTF8String;
+                env[1].name = NULL;
+                env[1].value = NULL;
+                envlib_setenv_xpc(env);
+            }
+            /*
+             * ... remove it from the variables to be deleted, ...
+             */
+            [deletedVariables removeObject: key];
+            /*
+             * ... and add it to the list of variables for book-keeping.
+             */
+            [variables addObject: key];
          }
      }];
     /*
      * Delete all variables that were set previously but have been removed.
      */
     [deletedVariables enumerateObjectsUsingBlock: ^ ( NSString* key, BOOL *stop ) {
-         NSLog( @"Unsetting '%@'", key );
-         envlib_unsetenv( key.UTF8String );
+        if( kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber10_10 ) {
+            NSLog( @"Unsetting '%@' using legacy launchd API.", key );
+            envlib_unsetenv( key.UTF8String );
+        } else {
+            NSLog( @"Unsetting '%@' using XPC launchd API.", key );
+            EnvEntry env[2];
+            env[0].name = key.UTF8String;
+            env[0].value = NULL;
+            env[1].name = NULL;
+            env[1].value = NULL;
+            envlib_setenv_xpc(env);
+        }
      }];
     /*
      * Export the list of variables such that the next invocation can determine

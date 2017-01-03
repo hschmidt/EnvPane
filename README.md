@@ -10,10 +10,12 @@ to log out and back in. This works for changes made by manually editing
 
 EnvPane still works on OS X 10.11 "El Capitan". I haven't tried it on 10.12
 "Sierra" yet. Apple [reimplemented][new_launchd] launchd in 10.10 and in the
-course of doing so deprecated some of the APIs used by EnvPane, so I am not
-sure as to how long it will continue to work.
+course of doing so deprecated the APIs used by EnvPane and even broke some of
+them (see [issue #11][issue_11]). EnvPane v0.6 adds support for the new but
+undocumented APIs, addressing the deprecation and [issue #11][issue_11].
 
 [new_launchd]: http://newosxbook.com/articles/jlaunchctl.html
+[issue_11]: https://github.com/hschmidt/EnvPane/issues/11
 
 ## Download
 
@@ -217,7 +219,7 @@ Terminal.
 
 ## License
 
-    Copyright 2012, 2016 Hannes Schmidt
+    Copyright 2012, 2016, 2017 Hannes Schmidt
     
     Licensed under the Apache License, Version 2.0 (the "License"); 
     you may not use this file except in compliance with the License. 
