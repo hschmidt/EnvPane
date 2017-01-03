@@ -3,10 +3,11 @@
 <img src="http://diaryproducts.net/files/EnvPane.png" style="float:left"/>
 EnvPane is a preference pane for Mac OS X (10.8 or newer) that lets you set
 environment variables for all applications, both GUI and terminal. Not only
-does it restore support for `~/.MacOSX/environment.plist` (see [#Background]),
-it also publishes your changes to the environment immediately, without the need
-to log out and back in. This works for changes made by manually editing
-`~/.MacOSX/environment.plist` as well via the preference pane UI.
+does it restore support for `~/.MacOSX/environment.plist` (see
+[Background](#background)), it also publishes your changes to the environment
+immediately, without the need to log out and back in. This works for changes
+made by manually editing `~/.MacOSX/environment.plist` as well via the
+preference pane UI.
 
 EnvPane still works on OS X 10.11 "El Capitan". I haven't tried it on 10.12
 "Sierra" yet. Apple [reimplemented][new_launchd] launchd in 10.10 and in the
@@ -30,6 +31,7 @@ yourself](#building-from-source).
 <!-- break -->
 
 
+<a id="background"></a>
 ## Background
 
 Mac OS X releases prior to Mountain Lion (10.8) included support for
