@@ -87,82 +87,61 @@ static NSString* savedEnvironmentPath;
 }
 
 
-
-- (void) export
-{
-    /*
-     * Initialize the set of variables to be deleted to the set of current
-     * variables.
-     */
-    NSMutableSet* deletedVariables;
+- (void)export {
+    NSMutableSet *oldVariables;
     const char *pcOldVariables = getenv( agentName "_vars" );
     if( pcOldVariables == NULL ) {
-        deletedVariables = [NSMutableSet set];
+        oldVariables = [NSMutableSet set];
     } else {
-        NSString * oldVariables = [NSString stringWithCString: pcOldVariables
-                                                     encoding: NSUTF8StringEncoding];
-        deletedVariables = [NSMutableSet setWithArray: [oldVariables componentsSeparatedByString: @" "]];
+        NSString *oldVariablesStr = [NSString stringWithCString: pcOldVariables
+                                                       encoding: NSUTF8StringEncoding];
+        oldVariables = [NSMutableSet setWithArray: [oldVariablesStr componentsSeparatedByString: @" "]];
         // in case oldVariables was empty or had multiple consecutive separators:
-        [deletedVariables removeObject:@""];
+        [oldVariables removeObject: @""];
     }
-    /*
-     * Initialize the set of variables to an empty array. Using an array is ok
-     * in this case, as we will be filling it with the keys from the _dict which
-     * are guaranteed to be unique.
-     */
-    NSMutableArray* variables = [NSMutableArray array];
-    /*
-     * Iterate over each variable in the new environment and ...
-     */
-    [_dict enumerateKeysAndObjectsUsingBlock: ^ ( NSString *key, NSString *value, BOOL *stop ) {
-        if( value != nil ) {
-            /*
-             * ... export the variable, ...
-             */
-            if( kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber10_10 ) {
+    NSSet *newVariables;
+    if( kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber10_10 ) {
+        newVariables = [NSMutableSet set];
+        [_dict enumerateKeysAndObjectsUsingBlock: ^( NSString *key, NSString *value, BOOL *stop ) {
+            if( value != nil ) {
                 NSLog( @"Setting '%@' to '%@' using legacy launchd API.", key, value );
                 envlib_setenv( key.UTF8String, value.UTF8String );
-            } else {
-                NSLog( @"Setting '%@' to '%@' using XPC launchd API.", key, value );
-                EnvEntry env[2];
-                env[0].name = key.UTF8String;
-                env[0].value = value.UTF8String;
-                env[1].name = NULL;
-                env[1].value = NULL;
-                envlib_setenv_xpc(env);
+                [oldVariables removeObject: key];
+                [(NSMutableSet *) newVariables addObject: key];
             }
-            /*
-             * ... remove it from the variables to be deleted, ...
-             */
-            [deletedVariables removeObject: key];
-            /*
-             * ... and add it to the list of variables for book-keeping.
-             */
-            [variables addObject: key];
-         }
-     }];
-    /*
-     * Delete all variables that were set previously but have been removed.
-     */
-    [deletedVariables enumerateObjectsUsingBlock: ^ ( NSString* key, BOOL *stop ) {
-        if( kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber10_10 ) {
+        }];
+        [oldVariables enumerateObjectsUsingBlock: ^( NSString *key, BOOL *stop ) {
             NSLog( @"Unsetting '%@' using legacy launchd API.", key );
             envlib_unsetenv( key.UTF8String );
-        } else {
-            NSLog( @"Unsetting '%@' using XPC launchd API.", key );
-            EnvEntry env[2];
-            env[0].name = key.UTF8String;
-            env[0].value = NULL;
-            env[1].name = NULL;
-            env[1].value = NULL;
-            envlib_setenv_xpc(env);
+        }];
+    } else {
+        newVariables = [_dict keysOfEntriesPassingTest: ^BOOL( NSString *key, NSString *value, BOOL *stop ) {
+            return value != nil;
+        }];
+        [oldVariables minusSet: newVariables];
+        EnvEntry env[[newVariables count] + [oldVariables count] + 1];
+        EnvEntry *entry = env;
+        for( NSString *name in newVariables ) {
+            NSString *value = _dict[ name ];
+            NSLog( @"Setting '%@' to '%@' using XPC launchd API.", name, value );
+            entry->name = name.UTF8String;
+            entry->value = value.UTF8String;
+            entry++;
         }
-     }];
-    /*
-     * Export the list of variables such that the next invocation can determine
-     * which variables have to be deleted.
-     */
-    envlib_setenv( agentName "_vars", [variables componentsJoinedByString: @" "].UTF8String );
+        for( NSString *name in oldVariables ) {
+            NSLog( @"Unsetting '%@' using XPC launchd API.", name );
+            entry->name = name.UTF8String;
+            entry->value = NULL;
+            entry++;
+        }
+        // Add sentinel
+        entry->name = NULL;
+        entry->value = NULL;
+        // XPC API allows for setting and unsetting of variables in one call
+        envlib_setenv_xpc( env );
+    }
+    const char *pcNewVariables = [[newVariables allObjects] componentsJoinedByString: @" "].UTF8String;
+    envlib_setenv( agentName "_vars", pcNewVariables );
 }
 
 - (BOOL) isEqualToEnvironment: (Environment*) other
