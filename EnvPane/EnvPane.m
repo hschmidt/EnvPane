@@ -154,7 +154,7 @@
     NSURL* agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
 
     NSDictionary* curAgentConf = nil;
-    if( [fileManager fileExistsAtPath: agentConfUrl.path isDirectory: NO] ) {
+    if( [fileManager fileExistsAtPath: agentConfUrl.path] ) {
         curAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfUrl];
     }
 
