@@ -48,13 +48,11 @@ void envlib_setenv( const char *key, const char *value )
 
 void envlib_unsetenv( const char *key )
 {
-    launch_data_t request, keys, keyData, response;
+    launch_data_t request, keyData, response;
 
     request = launch_data_alloc( LAUNCH_DATA_DICTIONARY );
     keyData = launch_data_new_string( key );
-    keys = launch_data_alloc( LAUNCH_DATA_ARRAY );
-    launch_data_array_set_index(keys, keyData, 0);
-    launch_data_dict_insert( request, keys, LAUNCH_KEY_UNSETUSERENVIRONMENT );
+    launch_data_dict_insert( request, keyData, LAUNCH_KEY_UNSETUSERENVIRONMENT );
 
     response = launch_msg( request );
     launch_data_free( request );
