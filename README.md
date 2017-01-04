@@ -169,6 +169,20 @@ Building from source
 
 4. Build the project
 
+Linker complaints about libmarkdown. e.g.
+
+```
+ld: warning: object file (/usr/local/lib/libmarkdown.a(markdown.o)) was built for newer OSX version (10.11) than being linked (10.9)
+```
+
+are to be expected when linking against a HomeBrew-ed installation of that
+library on 10.10 or newer.
+
+The `-load_all` linker flag is needed to prevent errors like
+
+```
+exception:-[__NSCFDictionary writeToFile:atomically:createParent:createAncestors:error:]: unrecognized selector sent to instance
+```
 
 ## FAQ
 
