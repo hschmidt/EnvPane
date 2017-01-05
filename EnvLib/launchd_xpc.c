@@ -16,6 +16,7 @@
 
 #include "launchd_xpc.h"
 #include <xpc/xpc.h>
+#include <mach/mach_init.h>
 #include "log.h"
 
 // Much of this is taken from http://newosxbook.com/articles/jlaunchctl.html by Jonathan Levin.
@@ -24,9 +25,6 @@ struct xpc_global_data {
     uint64_t	a;
     uint64_t	xpc_flags;
     mach_port_t	task_bootstrap_port;
-#if __LP64__
-    uint32_t	padding;
-#endif
     xpc_object_t	xpc_bootstrap_pipe;
 };
 
@@ -37,13 +35,16 @@ struct _os_alloc_once_s {
 
 extern struct _os_alloc_once_s _os_alloc_once_table[];
 
+#define OS_ALLOC_ONCE_KEY_LIBXPC	1 // from libSystem's alloc_once_private.h
+
 extern int xpc_pipe_routine(xpc_object_t *pipe, xpc_object_t *request, xpc_object_t **response);
 extern int xpc_dictionary_set_mach_send(xpc_object_t xdict, const char *key, mach_port_t);
 extern char *xpc_strerror(int64_t);
 
-
 bool envlib_setenv_xpc( EnvEntry env[] ) {
-    struct xpc_global_data *xpc_gd = (struct xpc_global_data *) _os_alloc_once_table[1].ptr;
+    // TODO: We really ought to figure out how to do this os_alloc_once stuff properly.
+    // We should be looking at the `flag` member of the struct and do sth if it's not set.
+    struct xpc_global_data *xpc_gd = (struct xpc_global_data *) _os_alloc_once_table[OS_ALLOC_ONCE_KEY_LIBXPC].ptr;
 
     xpc_object_t envvars = xpc_dictionary_create( NULL, NULL, 0 );
     for( EnvEntry* entry = env; entry->name; entry++ ) {
@@ -61,7 +62,7 @@ bool envlib_setenv_xpc( EnvEntry env[] ) {
     xpc_dictionary_set_uint64( dict, "handle", 0 );
     xpc_dictionary_set_bool( dict, "legacy", 1 );
     xpc_dictionary_set_bool( dict, "legacy", 1 );
-    xpc_dictionary_set_mach_send( dict, "domain-port", xpc_gd[1].task_bootstrap_port );
+    xpc_dictionary_set_mach_send( dict, "domain-port", bootstrap_port );
 
     xpc_object_t *outDict = NULL;
 
