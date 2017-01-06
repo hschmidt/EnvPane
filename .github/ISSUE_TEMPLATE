@@ -1,0 +1,15 @@
+What version of EnvPane are you using. Did you download the official release or
+did you build it yourself?
+
+What version of OS X are you using (or attempting to use) EnvPane on?
+
+Did you install EnvPane for the current user only or for all users? I admit,
+that's a bit of a trick question.
+
+Did you install EnvPane as an administrative user?
+
+Can you provide relevant system.log messages? You can use the Console
+application to get those: Hit Cmd-Space, type `Console`, hit enter (the Console
+app should open), click on `system.log` on the left, click the search bar at
+the top and type `Env` to filter the list. Copy and paste it below but be sure
+to redact any confidential informations such as account names, IP addresses etc.
