@@ -17,7 +17,6 @@
 #include "launchd_legacy.h"
 
 #include <errno.h>
-#include <stdio.h>
 
 #include "launch_priv.h"
 #include "log.h"

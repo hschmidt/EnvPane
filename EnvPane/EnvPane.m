@@ -20,9 +20,6 @@
 #import "Error.h"
 #import "NSDictionary+EnvLib.h"
 
-#import <SecurityFoundation/SFAuthorization.h>
-#import <ServiceManagement/ServiceManagement.h>
-
 @implementation EnvPane
 
 - (void) awakeFromNib
@@ -206,7 +203,8 @@
         return NO_AssignError( error, NewError( @"Failed to load/start agent" ) );
     }
 
-    return self.agentInstalled = YES;
+    self.agentInstalled = YES;
+    return YES;
 }
 
 - (void) presentError: (NSError*) error
