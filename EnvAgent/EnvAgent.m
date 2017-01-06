@@ -15,12 +15,7 @@
  */
 
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <signal.h>
-#include <asl.h>
-
-#include <launch.h>
 
 #import <Foundation/Foundation.h>
 
@@ -62,7 +57,7 @@ int main( int argc, const char** argv )
      * simply export the environment. Otherwise, we uninstall the agent by
      * removing the files created outside the bundle during installation.
      */
-    NSString* envPanePath = [curAgentConf objectForKey: @"WatchPaths"][0];
+    NSString* envPanePath = curAgentConf[ @"WatchPaths" ][0];
     BOOL isDir;
     if( [fileManager fileExistsAtPath: envPanePath isDirectory: &isDir] && isDir ) {
         NSLog( @"Setting environment" );
@@ -73,7 +68,7 @@ int main( int argc, const char** argv )
         /*
          * Remove agent binary
          */
-        NSString* agentExecutablePath = [curAgentConf objectForKey: @"ProgramArguments"][0];
+        NSString* agentExecutablePath = curAgentConf[ @"ProgramArguments" ][0];
         if( ![fileManager removeItemAtPath: agentExecutablePath error: &error] ) {
             NSLog( @"Failed to remove agent executable (%@): %@", agentExecutablePath, error );
         }

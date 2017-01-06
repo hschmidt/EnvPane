@@ -64,7 +64,7 @@
 - (void) applyChanges
 {
     Environment* environment = [Environment withArrayOfEntries: self.editableEnvironment];
-    if( ![environment isEqualToEnvironment: savedEnvironment] ) {
+    if( ! [environment isEqualToEnvironment: savedEnvironment] ) {
         NSError* error = nil;
         if( [environment savePlist: &error] ) {
             savedEnvironment = environment;

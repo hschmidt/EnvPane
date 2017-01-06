@@ -15,8 +15,6 @@
  */
 
 #import "Environment.h"
-#import "Error.h"
-#import "NSFileManager+EnvLib.h"
 #import "NSDictionary+EnvLib.h"
 
 #include "Constants.h"
@@ -103,7 +101,8 @@ static NSString* savedEnvironmentPath;
 }
 
 
-- (void)export {
+- (void)export
+{
     NSMutableSet *oldVariables;
     const char *pcOldVariables = getenv( agentName "_vars" );
     if( pcOldVariables == NULL ) {
