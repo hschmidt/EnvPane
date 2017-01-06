@@ -32,6 +32,11 @@
 + ( Environment* ) loadPlist;
 
 /**
+ * Initialize an environment with a copy of the given dictionary.
+ */
++ (Environment *) withDictionary: (NSDictionary *) dict;
+
+/**
  * Returns an environment with copies of the entries in the given array. Each
  * array item is assumed to be a NSDictionary with entries, one for the name
  * of the environment variable (using the key 'name'), and one for its value

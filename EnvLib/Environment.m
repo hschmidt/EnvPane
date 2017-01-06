@@ -48,15 +48,33 @@ static NSString* savedEnvironmentPath;
     return self;
 }
 
-+ (Environment*) loadPlist
++ (Environment *) withDictionary: (NSDictionary *) dict
 {
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile: savedEnvironmentPath];
-    Environment* env = [self alloc];
-    return [env initWithDictionary: dict == nil ? @{}: dict];
+    NSDictionary *copy = [NSDictionary dictionaryWithDictionary: dict];
+    Environment *env = [self alloc];
+    return [env initWithDictionary: copy];
+}
+
++ (Environment *) loadPlist
+{
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: savedEnvironmentPath];
+    NSMutableDictionary *mutDict = [NSMutableDictionary dictionary];
+    if( dict == nil ) {
+        NSLog( @"Could not read environment from plist at %@.", savedEnvironmentPath );
+    }
+    [dict enumerateKeysAndObjectsUsingBlock: ^( id key, id value, BOOL *stop ) {
+        if( [key isKindOfClass: [NSString class]] && [value isKindOfClass: [NSString class]] ) {
+            mutDict[ key ] = value;
+        } else {
+            NSLog( @"Ignoring plist entry with non-string key or value in %@.", savedEnvironmentPath );
+        }
+    }];
+    return [self withDictionary: mutDict];
 }
 
 - (BOOL) savePlist: (NSError**) error
 {
+    NSLog( @"Saving environment to %@", savedEnvironmentPath );
     return [_dict writeToFile: savedEnvironmentPath
                    atomically: YES
                  createParent: YES
@@ -68,22 +86,20 @@ static NSString* savedEnvironmentPath;
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity: _dict.count];
     [_dict enumerateKeysAndObjectsUsingBlock: ^ ( NSString *key, NSString *value, BOOL *stop ) {
-         if( value != nil ) [array addObject: @{ @"name": key, @"value": value }.mutableCopy];
+        [array addObject: @{ @"name": key, @"value": value }.mutableCopy];
      }];
     return array;
 }
 
-+ (Environment*) withArrayOfEntries: (NSArray*) array
++ (Environment *) withArrayOfEntries: (NSArray *) array
 {
     NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithCapacity: [array count]];
-    [array enumerateObjectsUsingBlock: ^ ( NSDictionary *entry, NSUInteger idx, BOOL *stop ) {
-         NSString *key = [entry valueForKey: @"name"];
-         NSString *value = [entry valueForKey: @"value"];
-         if( key != nil && value != nil ) [mutDict setObject: value forKey: key];
-     }];
-    Environment* env = [self alloc];
-    NSDictionary* dict = [NSDictionary dictionaryWithDictionary: mutDict];
-    return [env initWithDictionary: dict];
+    [array enumerateObjectsUsingBlock: ^( NSDictionary *entry, NSUInteger idx, BOOL *stop ) {
+        NSString *name = [entry valueForKey: @"name"];
+        NSString *value = [entry valueForKey: @"value"];
+        if( name != nil ) mutDict[ name ] = value == nil ? @"" : value;
+    }];
+    return [self withDictionary: mutDict];
 }
 
 
