@@ -103,7 +103,10 @@ int main( int argc, const char** argv )
             NSLog( @"Failed to unload agent (%@)", agentLabel );
         }
     }
-
-    NSLog( @"Exiting agent %s (%u)", argv[0], getpid() );
+    // Work around weird issue with launchd starting the agent a second time if it finishes within
+    // 10 seconds, the default ThrottleInterval. We reduce the ThrottleInterval to 1s in the plist
+    // and wait a little longer here to avoid hitting that condition.
+    [NSThread sleepForTimeInterval:1.1];
+    NSLog( @"Exiting agent %s (PID %u)", argv[0], getpid() );
     return 0;
 }

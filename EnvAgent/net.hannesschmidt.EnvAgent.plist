@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>WaitForDebugger</key>
-	<false/>
-	<key>EnableTransactions</key>
-	<false/>
+	<key>ThrottleInterval</key>
+	<integer>1</integer>
 	<key>Label</key>
 	<string>net.hannesschmidt.EnvAgent</string>
 	<key>RunAtLoad</key>
