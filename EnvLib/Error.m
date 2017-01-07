@@ -17,17 +17,17 @@
 #import "Error.h"
 
 
-NSError* LogError( NSError *error )
+NSError *LogError( NSError *error )
 {
     NSLog( @"Error: %@", error );
     return error;
 }
 
-NSError* NewError( NSString* message )
+NSError *NewError( NSString *message )
 {
     return [NSError errorWithDomain: @"EnvLib"
                                code: 0
-                           userInfo: @{NSLocalizedDescriptionKey : message}];
+                           userInfo: @{ NSLocalizedDescriptionKey: message }];
 }
 
 BOOL NO_AssignError( NSError **dst, NSError *src )

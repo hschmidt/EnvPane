@@ -18,6 +18,7 @@
 #define launchd_legacy_h
 
 void envlib_setenv( const char *key, const char *value );
+
 void envlib_unsetenv( const char *key );
 
 #endif /* launchd_legacy_h */

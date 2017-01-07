@@ -22,17 +22,17 @@
 #import "Environment.h"
 #import "Constants.h"
 
-int main( int argc, const char** argv )
+int main( int argc, const char **argv )
 {
-    NSLog( @"Started agent %s (%u)", argv[0], getpid() );
+    NSLog( @"Started agent %s (%u)", argv[ 0 ], getpid() );
 
-    NSError* error = nil;
-    NSFileManager* fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
 
     /*
      * Read current agent configuration.
      */
-    NSURL* libraryUrl = [fileManager URLForDirectory: NSLibraryDirectory
+    NSURL *libraryUrl = [fileManager URLForDirectory: NSLibraryDirectory
                                             inDomain: NSUserDomainMask
                                    appropriateForURL: nil
                                               create: NO
@@ -42,14 +42,14 @@ int main( int argc, const char** argv )
         return 1;
     };
 
-    NSURL* agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
+    NSURL *agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
                                                        isDirectory: YES];
 
-    NSString* agentConfName = [agentLabel stringByAppendingString: @".plist"];
+    NSString *agentConfName = [agentLabel stringByAppendingString: @".plist"];
 
-    NSURL* agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
+    NSURL *agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
 
-    NSDictionary* curAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfUrl];
+    NSDictionary *curAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfUrl];
 
     /*
      * As per convention, the path to the preference pane is the first entry in
@@ -57,18 +57,18 @@ int main( int argc, const char** argv )
      * simply export the environment. Otherwise, we uninstall the agent by
      * removing the files created outside the bundle during installation.
      */
-    NSString* envPanePath = curAgentConf[ @"WatchPaths" ][0];
+    NSString *envPanePath = curAgentConf[ @"WatchPaths" ][ 0 ];
     BOOL isDir;
     if( [fileManager fileExistsAtPath: envPanePath isDirectory: &isDir] && isDir ) {
         NSLog( @"Setting environment" );
-        Environment* environment = [Environment loadPlist];
+        Environment *environment = [Environment loadPlist];
         [environment export];
     } else {
         NSLog( @"Uninstalling agent" );
         /*
          * Remove agent binary
          */
-        NSString* agentExecutablePath = curAgentConf[ @"ProgramArguments" ][0];
+        NSString *agentExecutablePath = curAgentConf[ @"ProgramArguments" ][ 0 ];
         if( ![fileManager removeItemAtPath: agentExecutablePath error: &error] ) {
             NSLog( @"Failed to remove agent executable (%@): %@", agentExecutablePath, error );
         }
@@ -81,7 +81,7 @@ int main( int argc, const char** argv )
         /*
          * ... and its parent directory.
          */
-        NSString* envAgentAppSupport = [agentExecutablePath stringByDeletingLastPathComponent];
+        NSString *envAgentAppSupport = [agentExecutablePath stringByDeletingLastPathComponent];
         if( ![fileManager removeItemAtPath: envAgentAppSupport error: &error] ) {
             NSLog( @"Failed to remove agent configuration (%@): %@", agentConfUrl, error );
         }
@@ -91,7 +91,7 @@ int main( int argc, const char** argv )
          * be terminated and it works without the presence of agent executable
          * or plist.
          */
-        NSTask* task = [NSTask launchedTaskWithLaunchPath: launchctlPath
+        NSTask *task = [NSTask launchedTaskWithLaunchPath: launchctlPath
                                                 arguments: @[ @"remove", agentLabel ]];
         [task waitUntilExit];
         if( [task terminationStatus] != 0 ) {
@@ -101,7 +101,7 @@ int main( int argc, const char** argv )
     // Work around weird issue with launchd starting the agent a second time if it finishes within
     // 10 seconds, the default ThrottleInterval. We reduce the ThrottleInterval to 1s in the plist
     // and wait a little longer here to avoid hitting that condition.
-    [NSThread sleepForTimeInterval:1.1];
-    NSLog( @"Exiting agent %s (PID %u)", argv[0], getpid() );
+    [NSThread sleepForTimeInterval: 1.1];
+    NSLog( @"Exiting agent %s (PID %u)", argv[ 0 ], getpid() );
     return 0;
 }

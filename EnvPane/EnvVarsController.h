@@ -16,9 +16,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface EnvVarsController : NSArrayController {
+@interface EnvVarsController: NSArrayController
+{
 @private
-IBOutlet NSTableView *_view;
+    IBOutlet NSTableView *_view;
 }
 
 @end

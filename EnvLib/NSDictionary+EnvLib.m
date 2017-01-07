@@ -31,12 +31,15 @@
                                        reason: @"createAncestors implies createParent"
                                      userInfo: nil];
     }
-    if( createParent && ![[NSFileManager defaultManager] ensureParentDirectoryExistsOf: path
-                                                           withIntermediateDirectories: createAncestors
-                                                                                 error: error] ) return NO;
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if( createParent && ![manager ensureParentDirectoryExistsOf: path
+                                    withIntermediateDirectories: createAncestors
+                                                          error: error] ) {
+        return NO;
+    }
     if( [self writeToFile: path atomically: atomically] ) return YES;
 
-    return NO_AssignError( error, NewError( [NSString stringWithFormat: @"Can't write to '%@'", path ] ) );
+    return NO_AssignError( error, NewError( [NSString stringWithFormat: @"Can't write to '%@'", path] ) );
 }
 
 @end

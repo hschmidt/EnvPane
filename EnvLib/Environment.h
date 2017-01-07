@@ -16,20 +16,21 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Environment : NSObject {
-    @private
-    NSDictionary* _dict;
+@interface Environment: NSObject
+{
+@private
+    NSDictionary *_dict;
 }
 
 /**
  * Returns the path of the file that contains the persistent environment.
  */
-+ ( NSString* ) savedEnvironmentPath;
++ (NSString *) savedEnvironmentPath;
 
 /**
  * Returns environment with the variables from ~/.MacOSX/environment.plist.
  */
-+ ( Environment* ) loadPlist;
++ (Environment *) loadPlist;
 
 /**
  * Initialize an environment with a copy of the given dictionary.
@@ -42,28 +43,28 @@
  * of the environment variable (using the key 'name'), and one for its value
  * (using the key 'value'.
  */
-+ ( Environment* ) withArrayOfEntries: ( NSArray* ) array;
++ (Environment *) withArrayOfEntries: (NSArray *) array;
 
 /**
  * Saves the environment variables to ~/.MacOSX/environment.plist.
  */
-- (BOOL) savePlist: (NSError**) error;
+- (BOOL) savePlist: (NSError **) error;
 
 /**
  * Returns an array of the form expected by withArrayOfEntries: containing the
  * receivers environment variables.
  */
-- ( NSMutableArray* ) toArrayOfEntries;
+- (NSMutableArray *) toArrayOfEntries;
 
 /**
  * Exports the receiver's environment variables to the current user session.
  */
-- ( void ) export;
+- (void) export;
 
 /**
  * Returns YES if the receiver contains the same variables as the argument,
  * checking both the name and the value of each variable. 
  */
-- ( BOOL ) isEqualToEnvironment: ( Environment* ) other;
+- (BOOL) isEqualToEnvironment: (Environment *) other;
 
 @end

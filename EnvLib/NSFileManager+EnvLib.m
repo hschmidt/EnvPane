@@ -19,23 +19,23 @@
 
 @implementation NSFileManager (EnvLib)
 
-- (BOOL) ensureParentDirectoryExistsOf: (NSString*) childPath
+- (BOOL) ensureParentDirectoryExistsOf: (NSString *) childPath
            withIntermediateDirectories: (BOOL) withIntermediateDirectories
                                  error: (NSError **) error
 {
-    NSString* parentPath = [childPath stringByDeletingLastPathComponent];
+    NSString *parentPath = [childPath stringByDeletingLastPathComponent];
     BOOL isDir = NO;
     if( ![self fileExistsAtPath: parentPath isDirectory: &isDir] ) {
-        if( ![self  createDirectoryAtPath: parentPath
-              withIntermediateDirectories: withIntermediateDirectories
-                               attributes: nil
-                                    error: error] ) {
+        if( ![self createDirectoryAtPath: parentPath
+             withIntermediateDirectories: withIntermediateDirectories
+                              attributes: nil
+                                   error: error] ) {
             return NO;
         }
     } else {
         if( !isDir ) {
             return NO_AssignError( error, NewError( [NSString stringWithFormat: @"Expected directory at '%@'",
-                                                     parentPath] ) );
+                                                                                parentPath] ) );
         }
     }
     return YES;

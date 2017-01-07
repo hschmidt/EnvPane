@@ -19,10 +19,14 @@
 
 #import <Foundation/Foundation.h>
 
-NSError* LogError( NSError *error );
-NSError* NewError( NSString* message );
-NSError* LogNewError( NSString* message );
+NSError *LogError( NSError *error );
+
+NSError *NewError( NSString *message );
+
+NSError *LogNewError( NSString *message );
+
 BOOL NO_AssignError( NSError **dst, NSError *src );
+
 BOOL NO_LogError( NSError **error );
 
 #endif

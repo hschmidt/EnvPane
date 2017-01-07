@@ -18,9 +18,9 @@
 
 #import "Environment.h"
 
-@interface EnvPane : NSPreferencePane
+@interface EnvPane: NSPreferencePane
 {
-    @private
+@private
     Environment *savedEnvironment;
     NSTimer *applyChangesTimer;
 }

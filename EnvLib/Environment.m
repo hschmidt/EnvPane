@@ -24,14 +24,14 @@
 
 @implementation Environment
 
-static NSString* savedEnvironmentPath;
+static NSString *savedEnvironmentPath;
 
 + (void) initialize
 {
     savedEnvironmentPath = [@"~/.MacOSX/environment.plist" stringByExpandingTildeInPath];
 }
 
-+ (NSString*) savedEnvironmentPath
++ (NSString *) savedEnvironmentPath
 {
     return savedEnvironmentPath;
 }
@@ -39,7 +39,8 @@ static NSString* savedEnvironmentPath;
 /**
  * Designated initializer
  */
-- initWithDictionary: (NSDictionary*) dict {
+- initWithDictionary: (NSDictionary *) dict
+{
     if( self = [super init] ) {
         _dict = dict;
     }
@@ -70,7 +71,7 @@ static NSString* savedEnvironmentPath;
     return [self withDictionary: mutDict];
 }
 
-- (BOOL) savePlist: (NSError**) error
+- (BOOL) savePlist: (NSError **) error
 {
     NSLog( @"Saving environment to %@", savedEnvironmentPath );
     return [_dict writeToFile: savedEnvironmentPath
@@ -80,12 +81,12 @@ static NSString* savedEnvironmentPath;
                         error: error];
 }
 
-- (NSMutableArray*) toArrayOfEntries
+- (NSMutableArray *) toArrayOfEntries
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity: _dict.count];
-    [_dict enumerateKeysAndObjectsUsingBlock: ^ ( NSString *key, NSString *value, BOOL *stop ) {
+    [_dict enumerateKeysAndObjectsUsingBlock: ^( NSString *key, NSString *value, BOOL *stop ) {
         [array addObject: @{ @"name": key, @"value": value }.mutableCopy];
-     }];
+    }];
     return array;
 }
 
@@ -101,7 +102,7 @@ static NSString* savedEnvironmentPath;
 }
 
 
-- (void)export
+- (void) export
 {
     NSMutableSet *oldVariables;
     const char *pcOldVariables = getenv( agentName "_vars" );
@@ -159,7 +160,7 @@ static NSString* savedEnvironmentPath;
     envlib_setenv( agentName "_vars", pcNewVariables );
 }
 
-- (BOOL) isEqualToEnvironment: (Environment*) other
+- (BOOL) isEqualToEnvironment: (Environment *) other
 {
     return [_dict isEqualToDictionary: other->_dict];
 }

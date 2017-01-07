@@ -31,7 +31,7 @@
 {
     savedEnvironment = [Environment loadPlist];
     self.editableEnvironment = [savedEnvironment toArrayOfEntries];
-    NSError* error = nil;
+    NSError *error = nil;
     if( ![self installAgent: &error] ) {
         LogError( error );
         [self presentError: error];
@@ -53,33 +53,33 @@
     [applyChangesTimer invalidate];
 }
 
-- (void) timerTarget: (NSTimer*) timer
+- (void) timerTarget: (NSTimer *) timer
 {
     [self applyChanges];
 }
 
 - (void) applyChanges
 {
-    Environment* environment = [Environment withArrayOfEntries: self.editableEnvironment];
-    if( ! [environment isEqualToEnvironment: savedEnvironment] ) {
-        NSError* error = nil;
+    Environment *environment = [Environment withArrayOfEntries: self.editableEnvironment];
+    if( ![environment isEqualToEnvironment: savedEnvironment] ) {
+        NSError *error = nil;
         if( [environment savePlist: &error] ) {
             savedEnvironment = environment;
         } else {
             LogError( error );
             // revert
             self.editableEnvironment = [savedEnvironment toArrayOfEntries];
-            [self presentError: error ];
+            [self presentError: error];
         }
     }
 }
 
-- (BOOL) installAgent: (NSError**) error
+- (BOOL) installAgent: (NSError **) error
 {
-    NSBundle* bundle = self.bundle;
-    NSURL* bundleUrl = bundle.bundleURL;
-    NSFileManager* fileManager = NSFileManager.defaultManager;
-    NSURL* prefPanesUrl = [fileManager URLForDirectory: NSPreferencePanesDirectory
+    NSBundle *bundle = self.bundle;
+    NSURL *bundleUrl = bundle.bundleURL;
+    NSFileManager *fileManager = NSFileManager.defaultManager;
+    NSURL *prefPanesUrl = [fileManager URLForDirectory: NSPreferencePanesDirectory
                                               inDomain: NSUserDomainMask
                                      appropriateForURL: nil
                                                 create: NO
@@ -91,9 +91,9 @@
 
     if( ![bundleUrl.absoluteString hasPrefix: prefPanesUrl.absoluteString] ) {
         return NO_AssignError( error, NewError(
-                                   @"This preference pane must be installed for each user individually. "
-                                   "Installation for all users is currently not supported. Remove this preference pane "
-                                   "and then reinstall it, this time for the current user only." ) );
+                @"This preference pane must be installed for each user individually. "
+                        "Installation for all users is currently not supported. Remove this preference pane "
+                        "and then reinstall it, this time for the current user only." ) );
     }
 
     /*
@@ -102,55 +102,61 @@
      * the preference pane is deleted, enabling the agent to self-destruct
      * itself in that case.
      */
-    NSURL* agentExcutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
+    NSURL *agentExcutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
     if( agentExcutableUrl == nil ) {
         return NO_AssignError( error, NewError( @"Can't find agent executable" ) );
     }
 
-    NSURL* appSupportUrl = [fileManager URLForDirectory: NSApplicationSupportDirectory
+    NSURL *appSupportUrl = [fileManager URLForDirectory: NSApplicationSupportDirectory
                                                inDomain: NSUserDomainMask
                                       appropriateForURL: nil
                                                  create: NO
                                                   error: error];
     if( !appSupportUrl ) return NO;
 
-    NSURL* agentAppSupportUrl = [appSupportUrl URLByAppendingPathComponent: agentLabel
+    NSURL *agentAppSupportUrl = [appSupportUrl URLByAppendingPathComponent: agentLabel
                                                                isDirectory: YES];
 
-    NSURL* agentExecutableLinkUrl = [agentAppSupportUrl URLByAppendingPathComponent: agentExecutableName];
+    NSURL *agentExecutableLinkUrl = [agentAppSupportUrl URLByAppendingPathComponent: agentExecutableName];
 
     if( ![fileManager createDirectoryAtURL: agentAppSupportUrl
                withIntermediateDirectories: YES
                                 attributes: nil
-                                     error: error] ) return NO;
+                                     error: error] ) {
+        return NO;
+    }
 
     if( [fileManager fileExistsAtPath: agentExecutableLinkUrl.path] ) {
         if( ![fileManager removeItemAtURL: agentExecutableLinkUrl
-                                    error: error] ) return NO;
+                                    error: error] ) {
+            return NO;
+        }
     }
 
     if( ![fileManager linkItemAtURL: agentExcutableUrl
                               toURL: agentExecutableLinkUrl
-                              error: error] ) return NO;
+                              error: error] ) {
+        return NO;
+    }
 
     /*
      * Read current agent configuration, if possible.
      */
-    NSURL* libraryUrl = [fileManager URLForDirectory: NSLibraryDirectory
+    NSURL *libraryUrl = [fileManager URLForDirectory: NSLibraryDirectory
                                             inDomain: NSUserDomainMask
                                    appropriateForURL: nil
                                               create: NO
                                                error: error];
     if( !libraryUrl ) return NO;
 
-    NSURL* agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
+    NSURL *agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
                                                        isDirectory: YES];
 
-    NSString* agentConfName = [agentLabel stringByAppendingString: @".plist"];
+    NSString *agentConfName = [agentLabel stringByAppendingString: @".plist"];
 
-    NSURL* agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
+    NSURL *agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
 
-    NSDictionary* curAgentConf = nil;
+    NSDictionary *curAgentConf = nil;
     if( [fileManager fileExistsAtPath: agentConfUrl.path] ) {
         curAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfUrl];
     }
@@ -158,21 +164,21 @@
     /*
      * Prepare new agent configuration
      */
-    NSURL* agentConfTemplateUrl = [bundle.sharedSupportURL URLByAppendingPathComponent: agentConfName];
-    NSDictionary* newAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfTemplateUrl];
+    NSURL *agentConfTemplateUrl = [bundle.sharedSupportURL URLByAppendingPathComponent: agentConfName];
+    NSDictionary *newAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfTemplateUrl];
     if( newAgentConf == nil ) {
         return NO_AssignError( error, NewError( @"Can't load job description template" ) );
     }
 
     [newAgentConf setValue: @[ agentExecutableLinkUrl.path ]
                     forKey: @"ProgramArguments"];
-    [newAgentConf setValue: @[ bundleUrl.path, [Environment savedEnvironmentPath]]
+    [newAgentConf setValue: @[ bundleUrl.path, [Environment savedEnvironmentPath] ]
                     forKey: @"WatchPaths"];
 
     /*
      * If new agent configuration is different to currently installed one, ...
      */
-    NSTask* task;
+    NSTask *task;
     if( ![newAgentConf isEqualToDictionary: curAgentConf] ) {
         /*
          * ... install and load it into launchd.
@@ -207,9 +213,9 @@
     return YES;
 }
 
-- (void) presentError: (NSError*) error
+- (void) presentError: (NSError *) error
 {
-    NSApplication* app = [NSApplication sharedApplication];
+    NSApplication *app = [NSApplication sharedApplication];
     [app presentError: error];
 }
 

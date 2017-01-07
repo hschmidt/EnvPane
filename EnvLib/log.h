@@ -21,6 +21,6 @@
 
 #include <CoreFoundation/CFString.h>
 
-void NSLog(CFStringRef format, ...);
+void NSLog( CFStringRef format, ... );
 
 #endif /* log_h */

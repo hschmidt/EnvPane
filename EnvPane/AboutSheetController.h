@@ -17,13 +17,13 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 
-@interface AboutSheetController : NSViewController
+@interface AboutSheetController: NSViewController
 {
 }
 
-@property (weak) IBOutlet NSPanel *sheet;
+@property( weak ) IBOutlet NSPanel *sheet;
 
-+ (AboutSheetController*) sheetControllerWithBundle: (NSBundle *) bundle;
++ (AboutSheetController *) sheetControllerWithBundle: (NSBundle *) bundle;
 
 - (IBAction) dismissReadme: (id) sender;
 

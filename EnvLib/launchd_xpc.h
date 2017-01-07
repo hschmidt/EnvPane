@@ -19,7 +19,8 @@
 
 #include "stdbool.h"
 
-typedef struct {
+typedef struct
+{
     const char *name;
     const char *value;
 } EnvEntry;

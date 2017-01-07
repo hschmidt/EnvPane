@@ -18,7 +18,7 @@
 
 @interface NSFileManager (EnvLib)
 
-- (BOOL) ensureParentDirectoryExistsOf: (NSString*) childPath
+- (BOOL) ensureParentDirectoryExistsOf: (NSString *) childPath
            withIntermediateDirectories: (BOOL) withIntermediateDirectories
                                  error: (NSError **) error;
 

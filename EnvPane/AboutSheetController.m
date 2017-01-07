@@ -21,14 +21,14 @@
 @implementation AboutSheetController
 
 
-+ (AboutSheetController*) sheetControllerWithBundle: (NSBundle *) bundle
++ (AboutSheetController *) sheetControllerWithBundle: (NSBundle *) bundle
 {
     /*
      * We cache the controller instance to prevent it from being released
      * too early. If we don't, the dismissReadme action will likely go
      * into a dangling reference.
      */
-    static AboutSheetController* instance = nil;
+    static AboutSheetController *instance = nil;
     if( !instance ) {
         instance = [[self alloc] initWithNibName: @"AboutSheet"
                                           bundle: bundle];
@@ -40,9 +40,9 @@
 - (void) loadView
 {
     [super loadView];
-    NSError* error;
-    NSURL* readmeUrl = [self.nibBundle URLForResource: @"README" withExtension: @"md"];
-    NSString* readme = [NSString stringWithContentsOfURL: readmeUrl
+    NSError *error;
+    NSURL *readmeUrl = [self.nibBundle URLForResource: @"README" withExtension: @"md"];
+    NSString *readme = [NSString stringWithContentsOfURL: readmeUrl
                                                 encoding: NSUTF8StringEncoding
                                                    error: &error];
     const char *markup = [readme cStringUsingEncoding: NSUTF8StringEncoding];
@@ -50,32 +50,31 @@
     mkd_compile( markdown, 0 );
     char *html = NULL;
     mkd_document( markdown, &html );
-    NSString* nsHtml = [NSString stringWithCString: html
+    NSString *nsHtml = [NSString stringWithCString: html
                                           encoding: NSUTF8StringEncoding];
     WebView *view = (WebView *) self.view;
     [view.mainFrame loadHTMLString: nsHtml
                            baseURL: readmeUrl];
     mkd_cleanup( markdown );
 
-    [NSRunLoop.currentRunLoop
-     performSelector: @selector( beginSheet )
-              target: self
-            argument: nil
-               order: 0
-               modes: @[NSDefaultRunLoopMode]];
+    [NSRunLoop.currentRunLoop performSelector: @selector( beginSheet )
+                                       target: self
+                                     argument: nil
+                                        order: 0
+                                        modes: @[ NSDefaultRunLoopMode ]];
 }
 
 
 - (void) beginSheet
 {
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     [NSApp beginSheet: self.sheet
        modalForWindow: [NSApp mainWindow]
         modalDelegate: self
        didEndSelector: @selector( didEndSheet:returnCode:contextInfo: )
           contextInfo: NULL];
-    #pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
 }
 
 
@@ -93,10 +92,10 @@
 }
 
 
-- (void)                    webView: (WebView *) webView
-    decidePolicyForNavigationAction: (NSDictionary *) actionInformation
-                            request: (NSURLRequest *) request frame: (WebFrame *) frame
-                   decisionListener: (id < WebPolicyDecisionListener >) listener
+- (void)                webView: (WebView *) webView
+decidePolicyForNavigationAction: (NSDictionary *) actionInformation
+                        request: (NSURLRequest *) request frame: (WebFrame *) frame
+               decisionListener: (id <WebPolicyDecisionListener>) listener
 {
     NSURL *url = request.URL;
     NSString *host = url.host;

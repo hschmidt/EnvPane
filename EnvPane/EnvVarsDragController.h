@@ -18,10 +18,11 @@
 
 extern NSString *EnvVarsNodeType;
 
-@interface EnvVarsDragController : NSObject <NSTableViewDataSource> {
-    @private
-	IBOutlet NSTableView *_view;
-	IBOutlet NSArrayController *_controller;
+@interface EnvVarsDragController: NSObject <NSTableViewDataSource>
+{
+@private
+    IBOutlet NSTableView *_view;
+    IBOutlet NSArrayController *_controller;
 }
 
 @end
