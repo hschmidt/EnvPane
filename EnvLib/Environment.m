@@ -115,27 +115,34 @@ static NSString *savedEnvironmentPath;
         // in case oldVariables was empty or had multiple consecutive separators:
         [oldVariables removeObject: @""];
     }
-    NSSet *newVariables;
     if( kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber10_10 ) {
-        newVariables = [NSMutableSet set];
-        [_dict enumerateKeysAndObjectsUsingBlock: ^( NSString *key, NSString *value, BOOL *stop ) {
-            if( value != nil ) {
-                NSLog( @"Setting '%@' to '%@' using legacy launchd API.", key, value );
-                envlib_setenv( key.UTF8String, value.UTF8String );
-                [oldVariables removeObject: key];
-                [(NSMutableSet *) newVariables addObject: key];
-            }
-        }];
+        NSSet *newVariables = [NSMutableSet set];
+        [_dict enumerateKeysAndObjectsUsingBlock:
+                ^( NSString *key, NSString *value, BOOL *stop ) {
+                    if( value != nil ) {
+                        NSLog( @"Setting '%@' to '%@' using legacy launchd API.", key, value );
+                        envlib_setenv( key.UTF8String, value.UTF8String );
+                        [oldVariables removeObject: key];
+                        [(NSMutableSet *) newVariables addObject: key];
+                    }
+                }];
         [oldVariables enumerateObjectsUsingBlock: ^( NSString *key, BOOL *stop ) {
             NSLog( @"Unsetting '%@' using legacy launchd API.", key );
             envlib_unsetenv( key.UTF8String );
         }];
+        if( newVariables.count ) {
+            NSString *newVariablesStr = [[newVariables allObjects] componentsJoinedByString: @" "];
+            envlib_setenv( agentName "_vars", newVariablesStr.UTF8String );
+        } else {
+            envlib_unsetenv( agentName "_vars" );
+        }
     } else {
-        newVariables = [_dict keysOfEntriesPassingTest: ^BOOL( NSString *key, NSString *value, BOOL *stop ) {
-            return value != nil;
-        }];
+        NSSet *newVariables = [_dict keysOfEntriesPassingTest:
+                ^BOOL( NSString *key, NSString *value, BOOL *stop ) {
+                    return value != nil;
+                }];
         [oldVariables minusSet: newVariables];
-        EnvEntry env[[newVariables count] + [oldVariables count] + 1];
+        EnvEntry env[[newVariables count] + [oldVariables count] + 2];
         EnvEntry *entry = env;
         for( NSString *name in newVariables ) {
             NSString *value = _dict[ name ];
@@ -150,14 +157,20 @@ static NSString *savedEnvironmentPath;
             entry->value = NULL;
             entry++;
         }
+        // Add tracking variable
+        entry->name = agentName "_vars";
+        if( newVariables.count ) {
+            NSString *newVariablesStr = [[newVariables allObjects] componentsJoinedByString: @" "];
+            entry->value = newVariablesStr.UTF8String;
+        } else {
+            entry->value = NULL;
+        }
+        entry++;
         // Add sentinel
         entry->name = NULL;
         entry->value = NULL;
-        // XPC API allows for setting and unsetting of variables in one call
         envlib_setenv_xpc( env );
     }
-    const char *pcNewVariables = [[newVariables allObjects] componentsJoinedByString: @" "].UTF8String;
-    envlib_setenv( agentName "_vars", pcNewVariables );
 }
 
 - (BOOL) isEqualToEnvironment: (Environment *) other
