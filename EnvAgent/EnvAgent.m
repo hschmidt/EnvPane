@@ -28,7 +28,6 @@ int main( int argc, const char **argv )
 
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-
     /*
      * Read current agent configuration.
      */
@@ -41,25 +40,21 @@ int main( int argc, const char **argv )
         NSLog( @"Can't find current user's library directory: %@", error );
         return 1;
     };
-
     NSURL *agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
                                                        isDirectory: YES];
-
     NSString *agentConfName = [agentLabel stringByAppendingString: @".plist"];
-
     NSURL *agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
-
     NSDictionary *curAgentConf = [NSDictionary dictionaryWithContentsOfURL: agentConfUrl];
-
     /*
-     * As per convention, the path to the preference pane is the first entry in
-     * WatchPaths. Normally, the preference pane bundle still exists and we
-     * simply export the environment. Otherwise, we uninstall the agent by
-     * removing the files created outside the bundle during installation.
+     * As per convention, the path to the preference pane is the first entry in WatchPaths.
+     * Normally, the preference pane bundle still exists and we simply export the environment.
+     * Otherwise, we uninstall the agent by removing the files created outside the bundle during
+     * installation.
      */
     NSString *envPanePath = curAgentConf[ @"WatchPaths" ][ 0 ];
     BOOL isDir;
-    if( [fileManager fileExistsAtPath: envPanePath isDirectory: &isDir] && isDir ) {
+    if( [fileManager fileExistsAtPath: envPanePath
+                          isDirectory: &isDir] && isDir ) {
         NSLog( @"Setting environment" );
         Environment *environment = [Environment loadPlist];
         [environment export];
@@ -82,14 +77,14 @@ int main( int argc, const char **argv )
          * ... and its parent directory.
          */
         NSString *envAgentAppSupport = [agentExecutablePath stringByDeletingLastPathComponent];
-        if( ![fileManager removeItemAtPath: envAgentAppSupport error: &error] ) {
+        if( ![fileManager removeItemAtPath: envAgentAppSupport
+                                     error: &error] ) {
             NSLog( @"Failed to remove agent configuration (%@): %@", agentConfUrl, error );
         }
         /*
-         * Remove the job from launchd. This seems to have the same effect as
-         * 'unload' except it doesn't cause the running instance of the agent to
-         * be terminated and it works without the presence of agent executable
-         * or plist.
+         * Remove the job from launchd. This seems to have the same effect as 'unload' except it
+         * doesn't cause the running instance of the agent to be terminated and it works without
+         * the presence of agent executable or plist.
          */
         NSTask *task = [NSTask launchedTaskWithLaunchPath: launchctlPath
                                                 arguments: @[ @"remove", agentLabel ]];
@@ -105,3 +100,4 @@ int main( int argc, const char **argv )
     NSLog( @"Exiting agent %s (PID %u)", argv[ 0 ], getpid() );
     return 0;
 }
+
