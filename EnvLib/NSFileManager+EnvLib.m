@@ -21,7 +21,7 @@
 
 - (BOOL) ensureParentDirectoryExistsOf: (NSString *) childPath
            withIntermediateDirectories: (BOOL) withIntermediateDirectories
-                                 error: (NSError **) error
+                                 error: (NSError * __autoreleasing *) error
 {
     NSString *parentPath = [childPath stringByDeletingLastPathComponent];
     BOOL isDir = NO;

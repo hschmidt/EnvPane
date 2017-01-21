@@ -74,7 +74,7 @@
     }
 }
 
-- (BOOL) installAgent: (NSError **) error
+- (BOOL) installAgent: (NSError *__autoreleasing *) error
 {
     NSBundle *bundle = self.bundle;
     NSURL *bundleUrl = bundle.bundleURL;

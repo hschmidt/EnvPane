@@ -24,7 +24,7 @@
           atomically: (BOOL) atomically
         createParent: (BOOL) createParent
      createAncestors: (BOOL) createAncestors
-               error: (NSError **) error
+               error: (NSError * __autoreleasing *) error
 {
     if( createAncestors && !createParent ) {
         @throw [NSException exceptionWithName: @"IllegalArgumentException"

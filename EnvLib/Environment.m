@@ -71,7 +71,7 @@ static NSString *savedEnvironmentPath;
     return [self withDictionary: mutDict];
 }
 
-- (BOOL) savePlist: (NSError **) error
+- (BOOL) savePlist: (NSError *__autoreleasing *) error
 {
     NSLog( @"Saving environment to %@", savedEnvironmentPath );
     return [_dict writeToFile: savedEnvironmentPath
