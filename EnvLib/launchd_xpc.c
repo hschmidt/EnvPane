@@ -66,7 +66,6 @@ bool envlib_setenv_xpc( EnvEntry env[] )
     xpc_dictionary_set_uint64( dict, "type", 7 );
     xpc_dictionary_set_uint64( dict, "handle", 0 );
     xpc_dictionary_set_bool( dict, "legacy", 1 );
-    xpc_dictionary_set_bool( dict, "legacy", 1 );
     xpc_dictionary_set_mach_send( dict, "domain-port", bootstrap_port );
 
     xpc_object_t *outDict = NULL;

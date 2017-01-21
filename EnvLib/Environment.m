@@ -16,13 +16,19 @@
 
 #import "Environment.h"
 #import "NSDictionary+EnvLib.h"
+#import "Interpolator.h"
 
 #include "Constants.h"
+
 
 #include "launchd_xpc.h"
 #include "launchd_legacy.h"
 
 @implementation Environment
+{
+@private
+    NSDictionary *_dict;
+}
 
 static NSString *savedEnvironmentPath;
 
@@ -176,6 +182,19 @@ static NSString *savedEnvironmentPath;
 - (BOOL) isEqualToEnvironment: (Environment *) other
 {
     return [_dict isEqualToDictionary: other->_dict];
+}
+
+- (BOOL) isEqual: (id) object
+{
+    return self == object
+            || [object isKindOfClass: [Environment class]]
+            && [self isEqualToEnvironment: object];
+}
+
+- (NSString *) description
+{
+    NSString *className = NSStringFromClass( [self class] );
+    return [NSString stringWithFormat: @"[%@ withDictionary: %@]", className, _dict];
 }
 
 @end

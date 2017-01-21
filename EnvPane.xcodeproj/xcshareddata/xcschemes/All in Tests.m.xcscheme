@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D1C85DAE167FC18A007C2CE7"
-               BuildableName = "libEnvLib.a"
-               BlueprintName = "EnvLib"
+               BlueprintIdentifier = "D14EB1951E231B6F000BAD4A"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
                ReferencedContainer = "container:EnvPane.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,21 +28,22 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D14EB1951E231B6F000BAD4A"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
+               ReferencedContainer = "container:EnvPane.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1C85DAE167FC18A007C2CE7"
-            BuildableName = "libEnvLib.a"
-            BlueprintName = "EnvLib"
-            ReferencedContainer = "container:EnvPane.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Development"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -54,9 +55,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1C85DAE167FC18A007C2CE7"
-            BuildableName = "libEnvLib.a"
-            BlueprintName = "EnvLib"
+            BlueprintIdentifier = "D14EB1951E231B6F000BAD4A"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
             ReferencedContainer = "container:EnvPane.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,26 +65,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D1C85DAE167FC18A007C2CE7"
-            BuildableName = "libEnvLib.a"
-            BlueprintName = "EnvLib"
-            ReferencedContainer = "container:EnvPane.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Development">
+      buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Deployment"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

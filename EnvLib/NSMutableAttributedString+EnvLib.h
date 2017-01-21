@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 
-#import <PreferencePanes/PreferencePanes.h>
+#import <Foundation/Foundation.h>
 
-#import "Environment.h"
-
-@interface EnvPane: NSPreferencePane
-@property (weak) IBOutlet NSTextField *helpLabel;
-
-@property NSMutableArray *editableEnvironment;
-@property BOOL agentInstalled;
-
-- (IBAction) showReadme: (id) sender;
+@interface NSMutableAttributedString (EnvLib)
++ (NSMutableAttributedString *) withString: (NSString *) string
+                                attributes: (NSDictionary<NSString *, id> *) attributes, ...
+NS_REQUIRES_NIL_TERMINATION;
 
 @end

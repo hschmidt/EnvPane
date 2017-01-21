@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2012, 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,18 +19,39 @@
 #import "AboutSheetController.h"
 #import "Error.h"
 #import "NSDictionary+EnvLib.h"
+#import "NSMutableAttributedString+EnvLib.h"
 
 @implementation EnvPane
+{
+@private
+    Environment *_savedEnvironment;
+    NSTimer *_applyChangesTimer;
+}
 
 - (void) awakeFromNib
 {
+    CGFloat fontSize = [NSFont systemFontSizeForControlSize: NSSmallControlSize];
+    NSFont *font = [NSFont userFixedPitchFontOfSize: fontSize];
+    NSDictionary *code = @{
+            NSFontAttributeName: font,
+    };
+    NSDictionary *plain = @{};
+    NSAttributedString *text = [NSMutableAttributedString
+            withString: @"Use "
+            attributes: plain,
+                        @"$(command)", code, @" for output of shell command, ", plain,
+                        @"${VAR}", code, @" or ", plain, @"$VAR", code,
+                        @" for a variable value and ", plain, @"$$", code,
+                        @" for dollar sign.", plain, nil];
+    [self.helpLabel setAttributedStringValue: text];
+    [self.helpLabel setAllowsEditingTextAttributes: NO];
     self.agentInstalled = NO;
 }
 
 - (void) mainViewDidLoad
 {
-    savedEnvironment = [Environment loadPlist];
-    self.editableEnvironment = [savedEnvironment toArrayOfEntries];
+    _savedEnvironment = [Environment loadPlist];
+    self.editableEnvironment = [_savedEnvironment toArrayOfEntries];
     NSError *error = nil;
     if( ![self installAgent: &error] ) {
         LogError( error );
@@ -40,17 +61,17 @@
 
 - (void) didSelect
 {
-    applyChangesTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
-                                                         target: self
-                                                       selector: @selector( timerTarget: )
-                                                       userInfo: NULL
-                                                        repeats: YES];
+    _applyChangesTimer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                                          target: self
+                                                        selector: @selector( timerTarget: )
+                                                        userInfo: NULL
+                                                         repeats: YES];
 }
 
 - (void) didUnselect
 {
     [self applyChanges];
-    [applyChangesTimer invalidate];
+    [_applyChangesTimer invalidate];
 }
 
 - (void) timerTarget: (NSTimer *) timer
@@ -61,14 +82,14 @@
 - (void) applyChanges
 {
     Environment *environment = [Environment withArrayOfEntries: self.editableEnvironment];
-    if( ![environment isEqualToEnvironment: savedEnvironment] ) {
+    if( ![environment isEqualToEnvironment: _savedEnvironment] ) {
         NSError *error = nil;
         if( [environment savePlist: &error] ) {
-            savedEnvironment = environment;
+            _savedEnvironment = environment;
         } else {
             LogError( error );
             // revert
-            self.editableEnvironment = [savedEnvironment toArrayOfEntries];
+            self.editableEnvironment = [_savedEnvironment toArrayOfEntries];
             [self presentError: error];
         }
     }
@@ -102,8 +123,8 @@
      * the preference pane is deleted, enabling the agent to self-destruct
      * itself in that case.
      */
-    NSURL *agentExcutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
-    if( agentExcutableUrl == nil ) {
+    NSURL *agentExecutableUrl = [bundle URLForAuxiliaryExecutable: agentExecutableName];
+    if( agentExecutableUrl == nil ) {
         return NO_AssignError( error, NewError( @"Can't find agent executable" ) );
     }
 
@@ -133,7 +154,7 @@
         }
     }
 
-    if( ![fileManager linkItemAtURL: agentExcutableUrl
+    if( ![fileManager linkItemAtURL: agentExecutableUrl
                               toURL: agentExecutableLinkUrl
                               error: error] ) {
         return NO;
@@ -149,12 +170,12 @@
                                                error: error];
     if( !libraryUrl ) return NO;
 
-    NSURL *agentConfsUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
-                                                       isDirectory: YES];
+    NSURL *agentConfDirUrl = [libraryUrl URLByAppendingPathComponent: @"LaunchAgents"
+                                                         isDirectory: YES];
 
     NSString *agentConfName = [agentLabel stringByAppendingString: @".plist"];
 
-    NSURL *agentConfUrl = [agentConfsUrl URLByAppendingPathComponent: agentConfName];
+    NSURL *agentConfUrl = [agentConfDirUrl URLByAppendingPathComponent: agentConfName];
 
     NSDictionary *curAgentConf = nil;
     if( [fileManager fileExistsAtPath: agentConfUrl.path] ) {

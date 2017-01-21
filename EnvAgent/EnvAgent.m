@@ -21,8 +21,9 @@
 
 #import "Environment.h"
 #import "Constants.h"
+#import "Interpolator.h"
 
-int main( int argc, const char **argv )
+int _try_main( int argc, const char **argv )
 {
     NSLog( @"Started agent %s (%u)", argv[ 0 ], getpid() );
     /*
@@ -68,6 +69,8 @@ int main( int argc, const char **argv )
                           isDirectory: &isDir] && isDir ) {
         NSLog( @"Setting environment" );
         Environment *environment = [Environment loadPlist];
+        environment = [Interpolator interpolate: environment
+                                       strictly: YES];
         [environment export];
     } else {
         NSLog( @"Uninstalling agent" );
@@ -108,3 +111,12 @@ int main( int argc, const char **argv )
     return 0;
 }
 
+int main( int argc, const char **argv )
+{
+    @try {
+        return _try_main( argc, argv );
+    } @catch( NSException *e ) {
+        NSLog( @"Terminating agent due to exception: %@", e );
+        return 2;
+    }
+}

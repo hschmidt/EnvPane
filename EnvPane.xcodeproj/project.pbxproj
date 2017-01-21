@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70291B6793B2D8BF84745C3 /* NSMutableAttributedString+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = B7029EDB4586D0BF20D58F38 /* NSMutableAttributedString+EnvLib.m */; };
+		B70292979BAB4283068DE2E2 /* Interpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = B70297B8369424DF08AD5FBF /* Interpolator.m */; };
+		B70295340F614FEEC8BD2B4D /* Interpolator.h in Headers */ = {isa = PBXBuildFile; fileRef = B70298F914D985AD8D7715C9 /* Interpolator.h */; };
+		B702956E5C6FB784CD379264 /* NSMutableAttributedString+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = B7029A7D64CEF0D08E15FA8D /* NSMutableAttributedString+EnvLib.h */; };
+		B702969A882E09205821C3D2 /* NSString+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = B7029D7AF8AA1DFA2A433E6E /* NSString+EnvLib.m */; };
+		B7029771D22CA571A33BA684 /* NSString+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = B7029AEAC9BE176913EC2B99 /* NSString+EnvLib.h */; };
 		D10BFDDC1688DE0B00C6A4CF /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10BFDDB1688DE0B00C6A4CF /* SecurityFoundation.framework */; };
 		D10BFDE31688E81600C6A4CF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10BFDE21688E81600C6A4CF /* ServiceManagement.framework */; };
 		D1313658167714790059AF76 /* EnvVarsController.h in Headers */ = {isa = PBXBuildFile; fileRef = D1313656167714790059AF76 /* EnvVarsController.h */; };
@@ -18,6 +24,8 @@
 		D1334E3B16858FFC0018F00D /* Environment.m in Sources */ = {isa = PBXBuildFile; fileRef = D1334E3916858FFC0018F00D /* Environment.m */; };
 		D1334E3C168639270018F00D /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D1334E3E168699030018F00D /* EnvPane.icns in Resources */ = {isa = PBXBuildFile; fileRef = D1334E3D168699030018F00D /* EnvPane.icns */; };
+		D14EB1991E231B6F000BAD4A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D14EB1981E231B6F000BAD4A /* Tests.m */; };
+		D14EB19B1E231B6F000BAD4A /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D154535116CC4045008A3ADB /* NSFileManager+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = D154534F16CC4045008A3ADB /* NSFileManager+EnvLib.h */; };
 		D154535216CC4045008A3ADB /* NSFileManager+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = D154535016CC4045008A3ADB /* NSFileManager+EnvLib.m */; };
 		D154535516CC74AB008A3ADB /* NSDictionary+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = D154535316CC74AB008A3ADB /* NSDictionary+EnvLib.h */; };
@@ -48,6 +56,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D14EB19C1E231B6F000BAD4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2ADE0A208395023000B79B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1C85DAE167FC18A007C2CE7;
+			remoteInfo = EnvLib;
+		};
 		D1C85DBC167FCC5D007C2CE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E2ADE0A208395023000B79B2 /* Project object */;
@@ -96,6 +111,12 @@
 
 /* Begin PBXFileReference section */
 		47A7E83A08C3B78F00D0011D /* EnvAgent */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EnvAgent; sourceTree = BUILT_PRODUCTS_DIR; };
+		B70297B8369424DF08AD5FBF /* Interpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interpolator.m; sourceTree = "<group>"; };
+		B70298F914D985AD8D7715C9 /* Interpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpolator.h; sourceTree = "<group>"; };
+		B7029A7D64CEF0D08E15FA8D /* NSMutableAttributedString+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+EnvLib.h"; sourceTree = "<group>"; };
+		B7029AEAC9BE176913EC2B99 /* NSString+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EnvLib.h"; sourceTree = "<group>"; };
+		B7029D7AF8AA1DFA2A433E6E /* NSString+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EnvLib.m"; sourceTree = "<group>"; };
+		B7029EDB4586D0BF20D58F38 /* NSMutableAttributedString+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+EnvLib.m"; sourceTree = "<group>"; };
 		D10BFDDB1688DE0B00C6A4CF /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		D10BFDE21688E81600C6A4CF /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		D1313656167714790059AF76 /* EnvVarsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvVarsController.h; sourceTree = "<group>"; };
@@ -105,6 +126,9 @@
 		D1334E3816858FFC0018F00D /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		D1334E3916858FFC0018F00D /* Environment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Environment.m; sourceTree = "<group>"; };
 		D1334E3D168699030018F00D /* EnvPane.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = EnvPane.icns; sourceTree = "<group>"; };
+		D14EB1961E231B6F000BAD4A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D14EB1981E231B6F000BAD4A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		D14EB19A1E231B6F000BAD4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D154534F16CC4045008A3ADB /* NSFileManager+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+EnvLib.h"; sourceTree = "<group>"; };
 		D154535016CC4045008A3ADB /* NSFileManager+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+EnvLib.m"; sourceTree = "<group>"; };
 		D154535316CC74AB008A3ADB /* NSDictionary+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EnvLib.h"; sourceTree = "<group>"; };
@@ -143,6 +167,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D14EB1931E231B6F000BAD4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D14EB19B1E231B6F000BAD4A /* libEnvLib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D19BDB571671286100C6467B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,6 +208,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D14EB1971E231B6F000BAD4A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D14EB1981E231B6F000BAD4A /* Tests.m */,
+				D14EB19A1E231B6F000BAD4A /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		D19BDB5D1671286100C6467B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +296,12 @@
 				D167214E1E1B148400743608 /* launchd_legacy.c */,
 				D167214F1E1B148400743608 /* launchd_legacy.h */,
 				D16721531E1B2ECA00743608 /* log.h */,
+				B70297B8369424DF08AD5FBF /* Interpolator.m */,
+				B70298F914D985AD8D7715C9 /* Interpolator.h */,
+				B7029D7AF8AA1DFA2A433E6E /* NSString+EnvLib.m */,
+				B7029AEAC9BE176913EC2B99 /* NSString+EnvLib.h */,
+				B7029EDB4586D0BF20D58F38 /* NSMutableAttributedString+EnvLib.m */,
+				B7029A7D64CEF0D08E15FA8D /* NSMutableAttributedString+EnvLib.h */,
 			);
 			path = EnvLib;
 			sourceTree = "<group>";
@@ -270,6 +317,7 @@
 				D19BDB661671286100C6467B /* EnvPane */,
 				D19BDB5D1671286100C6467B /* Frameworks */,
 				E2ADE0B2083950E7000B79B2 /* Products */,
+				D14EB1971E231B6F000BAD4A /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -279,6 +327,7 @@
 				47A7E83A08C3B78F00D0011D /* EnvAgent */,
 				D19BDB5C1671286100C6467B /* EnvPane.prefPane */,
 				D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */,
+				D14EB1961E231B6F000BAD4A /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,12 +357,33 @@
 				D16721551E1B2ECA00743608 /* log.h in Headers */,
 				D154535516CC74AB008A3ADB /* NSDictionary+EnvLib.h in Headers */,
 				D16721511E1B148400743608 /* launchd_legacy.h in Headers */,
+				B70295340F614FEEC8BD2B4D /* Interpolator.h in Headers */,
+				B7029771D22CA571A33BA684 /* NSString+EnvLib.h in Headers */,
+				B702956E5C6FB784CD379264 /* NSMutableAttributedString+EnvLib.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D14EB1951E231B6F000BAD4A /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D14EB1A11E231B6F000BAD4A /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				D14EB1921E231B6F000BAD4A /* Sources */,
+				D14EB1931E231B6F000BAD4A /* Frameworks */,
+				D14EB1941E231B6F000BAD4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D14EB19D1E231B6F000BAD4A /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = D14EB1961E231B6F000BAD4A /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D19BDB5B1671286100C6467B /* EnvPane */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D19BDB751671286100C6467B /* Build configuration list for PBXNativeTarget "EnvPane" */;
@@ -378,6 +448,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					D14EB1951E231B6F000BAD4A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
 			};
 			buildConfigurationList = 47BFFDF808902CAE003DA0CC /* Build configuration list for PBXProject "EnvPane" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -394,11 +469,19 @@
 				E2ADE0B0083950E7000B79B2 /* EnvAgent */,
 				D19BDB5B1671286100C6467B /* EnvPane */,
 				D1C85DAE167FC18A007C2CE7 /* EnvLib */,
+				D14EB1951E231B6F000BAD4A /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D14EB1941E231B6F000BAD4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D19BDB591671286100C6467B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -424,6 +507,14 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D14EB1921E231B6F000BAD4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D14EB1991E231B6F000BAD4A /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D19BDB561671286100C6467B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,6 +536,9 @@
 				D18C420C16CC1E0C00EF620B /* Error.m in Sources */,
 				D154535216CC4045008A3ADB /* NSFileManager+EnvLib.m in Sources */,
 				D154535616CC74AB008A3ADB /* NSDictionary+EnvLib.m in Sources */,
+				B70292979BAB4283068DE2E2 /* Interpolator.m in Sources */,
+				B702969A882E09205821C3D2 /* NSString+EnvLib.m in Sources */,
+				B70291B6793B2D8BF84745C3 /* NSMutableAttributedString+EnvLib.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +553,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D14EB19D1E231B6F000BAD4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1C85DAE167FC18A007C2CE7 /* EnvLib */;
+			targetProxy = D14EB19C1E231B6F000BAD4A /* PBXContainerItemProxy */;
+		};
 		D1C85DBD167FCC5D007C2CE7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D1C85DAE167FC18A007C2CE7 /* EnvLib */;
@@ -524,43 +623,58 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(launchd_source_dir)/liblaunch /usr/local/include";
+				WARNING_CFLAGS = (
+					"-Wno-gnu",
+					"-Wno-logical-op-parentheses",
+				);
 				launchd_source_dir = "$(SRCROOT)/../launchd-442.26.2";
 			};
 			name = Development;
@@ -569,39 +683,53 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(launchd_source_dir)/liblaunch /usr/local/include";
+				WARNING_CFLAGS = (
+					"-Wno-gnu",
+					"-Wno-logical-op-parentheses",
+				);
 				launchd_source_dir = "$(SRCROOT)/../launchd-442.26.2";
 			};
 			name = Deployment;
@@ -610,46 +738,104 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_WARN_ASSIGN_ENUM = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
+				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_PEDANTIC = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(launchd_source_dir)/liblaunch /usr/local/include";
+				WARNING_CFLAGS = (
+					"-Wno-gnu",
+					"-Wno-logical-op-parentheses",
+				);
 				launchd_source_dir = "$(SRCROOT)/../launchd-442.26.2";
+			};
+			name = Default;
+		};
+		D14EB19E1E231B6F000BAD4A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Development;
+		};
+		D14EB19F1E231B6F000BAD4A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Deployment;
+		};
+		D14EB1A01E231B6F000BAD4A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Default;
 		};
 		D19BDB761671286100C6467B /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -669,6 +855,7 @@
 		D19BDB771671286100C6467B /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
@@ -687,6 +874,7 @@
 		D19BDB781671286100C6467B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
@@ -704,6 +892,7 @@
 		D1C85DB0167FC18B007C2CE7 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = EnvLib;
 				SKIP_INSTALL = YES;
@@ -713,6 +902,7 @@
 		D1C85DB1167FC18B007C2CE7 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = EnvLib;
 				SKIP_INSTALL = YES;
@@ -722,6 +912,7 @@
 		D1C85DB2167FC18B007C2CE7 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = EnvLib;
 				SKIP_INSTALL = YES;
@@ -747,6 +938,16 @@
 				47BFFDF908902CAE003DA0CC /* Development */,
 				47BFFDFA08902CAE003DA0CC /* Deployment */,
 				47BFFDFB08902CAE003DA0CC /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Deployment;
+		};
+		D14EB1A11E231B6F000BAD4A /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D14EB19E1E231B6F000BAD4A /* Development */,
+				D14EB19F1E231B6F000BAD4A /* Deployment */,
+				D14EB1A01E231B6F000BAD4A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;

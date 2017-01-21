@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-#import <PreferencePanes/PreferencePanes.h>
+#import <Foundation/Foundation.h>
 
-#import "Environment.h"
+@interface NSString (EnvLib)
 
-@interface EnvPane: NSPreferencePane
-@property (weak) IBOutlet NSTextField *helpLabel;
+- (NSString *) trim;
 
-@property NSMutableArray *editableEnvironment;
-@property BOOL agentInstalled;
+- (BOOL) matches: (NSRegularExpression *) re;
 
-- (IBAction) showReadme: (id) sender;
+- (BOOL) prefixMatches: (NSRegularExpression *) re;
+
+- (NSRegularExpression *) toRegex;
+
+- (NSRegularExpression *) toRegexWithOptions: (NSRegularExpressionOptions) options;
 
 @end

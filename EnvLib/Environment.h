@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2012, 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,10 +17,9 @@
 #import <Foundation/Foundation.h>
 
 @interface Environment: NSObject
-{
-@private
-    NSDictionary *_dict;
-}
+
+
+@property( nonatomic, strong ) NSDictionary *dict;
 
 /**
  * Returns the path of the file that contains the persistent environment.
@@ -67,4 +66,5 @@
  */
 - (BOOL) isEqualToEnvironment: (Environment *) other;
 
+- (NSString *) description;
 @end
