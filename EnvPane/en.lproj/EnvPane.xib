@@ -100,6 +100,11 @@
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="120" name="textColor" keyPath="arrangedObjects.error" id="Ynu-lD-oYe">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">ErrorColorTransformer</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </tableColumn>
                                         <tableColumn width="507" minWidth="40" maxWidth="1000" id="105">
@@ -115,6 +120,11 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <connections>
+                                                <binding destination="120" name="textColor" keyPath="arrangedObjects.error" id="HXI-5w-p6d">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">ErrorColorTransformer</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="120" name="value" keyPath="arrangedObjects.value" id="142"/>
                                             </connections>
                                         </tableColumn>

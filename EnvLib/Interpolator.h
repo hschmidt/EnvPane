@@ -16,14 +16,30 @@
 #import <Foundation/Foundation.h>
 #import "Environment.h"
 
+@class InterpolationException;
+
 @interface Interpolator: NSObject
 
 /*
  * Interpolate all $FOO $(command) and ${FOO} references in the value of each variable in the given
- * environment and return the resulting new environment with all such interpolations resolved.
+ * environment and return the resulting new environment with all such interpolations resolved. In
+ * strict mode, an exception will be raised for the first interpolation error encountered, syntax
+ * or otherwise. In non-strict mode, any offending entry in the input will be missing from the
+ * output.
  */
 + (Environment *) interpolate: (Environment *) environment
                      strictly: (BOOL) strict;
+
+
+/*
+ * Interpolate all $FOO $(command) and ${FOO} references in the value of each variable in the given
+ * environment and return the resulting new environment with all such interpolations resolved. The
+ * given block will be invoked with an exception corresponding to every interpolation problem
+ * encountered, syntax or otherwise. The block may throw the given exception, any other exception
+ * or return a boolean indicating whether to continue interpolation of other entries.
+ */
++ (Environment *) interpolate: (Environment *) environment
+                      onError: (BOOL ( ^ )( InterpolationException *error )) onError;
 @end
 
 @interface InterpolationException: NSException

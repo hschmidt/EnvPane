@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,8 @@
  * limitations under the License.
  */
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-extern NSString *EnvVarsNodeType;
 
-@interface EnvVarsDragController: NSObject <NSTableViewDataSource, NSTableViewDelegate>
-{
-@private
-    IBOutlet NSTableView *_view;
-    IBOutlet NSArrayController *_controller;
-}
-
+@interface ErrorColorTransformer: NSValueTransformer
 @end

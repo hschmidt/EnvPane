@@ -43,6 +43,8 @@
 		D19BDB6B1671286100C6467B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D19BDB691671286100C6467B /* InfoPlist.strings */; };
 		D19BDB6F1671286100C6467B /* EnvPane.m in Sources */ = {isa = PBXBuildFile; fileRef = D19BDB6E1671286100C6467B /* EnvPane.m */; };
 		D19BDB741671286100C6467B /* EnvPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D19BDB721671286100C6467B /* EnvPane.xib */; };
+		D19EB2A81E34756500A7AAFE /* ErrorColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2A61E34756500A7AAFE /* ErrorColorTransformer.m */; };
+		D19EB2A91E34756500A7AAFE /* ErrorColorTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D19EB2A71E34756500A7AAFE /* ErrorColorTransformer.h */; };
 		D1C85DBE167FCC6C007C2CE7 /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D1E16E68167292D100724499 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E16E66167292D100724499 /* CoreFoundation.framework */; };
 		D1EFCA4D16911E3400013C1A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D1FC1DBC168F90AB004F5901 /* README.md */; };
@@ -152,6 +154,8 @@
 		D19BDB6D1671286100C6467B /* EnvPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnvPane.h; sourceTree = "<group>"; };
 		D19BDB6E1671286100C6467B /* EnvPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnvPane.m; sourceTree = "<group>"; };
 		D19BDB731671286100C6467B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EnvPane.xib; sourceTree = "<group>"; };
+		D19EB2A61E34756500A7AAFE /* ErrorColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorColorTransformer.m; sourceTree = "<group>"; };
+		D19EB2A71E34756500A7AAFE /* ErrorColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorColorTransformer.h; sourceTree = "<group>"; };
 		D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEnvLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E16E66167292D100724499 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		D1EFCA4E16912AD800013C1A /* AboutSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSheet.xib; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 		D19BDB661671286100C6467B /* EnvPane */ = {
 			isa = PBXGroup;
 			children = (
+				D19EB2A61E34756500A7AAFE /* ErrorColorTransformer.m */,
+				D19EB2A71E34756500A7AAFE /* ErrorColorTransformer.h */,
 				D19BDB6D1671286100C6467B /* EnvPane.h */,
 				D19BDB6E1671286100C6467B /* EnvPane.m */,
 				D1313656167714790059AF76 /* EnvVarsController.h */,
@@ -340,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1313658167714790059AF76 /* EnvVarsController.h in Headers */,
+				D19EB2A91E34756500A7AAFE /* ErrorColorTransformer.h in Headers */,
 				D131365D16771BBD0059AF76 /* EnvVarsDragController.h in Headers */,
 				D1EFCA54169240E000013C1A /* AboutSheetController.h in Headers */,
 			);
@@ -521,6 +528,7 @@
 			files = (
 				D19BDB6F1671286100C6467B /* EnvPane.m in Sources */,
 				D1313659167714790059AF76 /* EnvVarsController.m in Sources */,
+				D19EB2A81E34756500A7AAFE /* ErrorColorTransformer.m in Sources */,
 				D131365E16771BBD0059AF76 /* EnvVarsDragController.m in Sources */,
 				D1EFCA55169240E000013C1A /* AboutSheetController.m in Sources */,
 			);

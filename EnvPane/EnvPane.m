@@ -20,6 +20,7 @@
 #import "Error.h"
 #import "NSDictionary+EnvLib.h"
 #import "NSMutableAttributedString+EnvLib.h"
+#import "Interpolator.h"
 
 @implementation EnvPane
 {
@@ -82,7 +83,18 @@
 - (void) applyChanges
 {
     Environment *environment = [Environment withArrayOfEntries: self.editableEnvironment];
-    if( ![environment isEqualToEnvironment: _savedEnvironment] ) {
+    NSMutableDictionary *errors = [NSMutableDictionary dictionary];
+    [Interpolator interpolate: environment
+                      onError: ^BOOL( InterpolationException *error ) {
+                          errors[ error.key ] = error;
+                          return YES;
+                      }];
+    [self.editableEnvironment enumerateObjectsUsingBlock:
+            ^( NSMutableDictionary *entry, NSUInteger idx, BOOL *stop ) {
+                InterpolationException *error = [errors valueForKey: entry[ @"name" ]];
+                entry[ @"error" ] = error ? error.reason : nil;
+            }];
+    if( errors.count == 0 && ![environment isEqualToEnvironment: _savedEnvironment] ) {
         NSError *error = nil;
         if( [environment savePlist: &error] ) {
             _savedEnvironment = environment;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Hannes Schmidt
+ * Copyright 2017 Hannes Schmidt
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,36 @@
  * limitations under the License.
  */
 
-#import <Cocoa/Cocoa.h>
+#import "ErrorColorTransformer.h"
 
-extern NSString *EnvVarsNodeType;
+#import "Cocoa/Cocoa.h"
 
-@interface EnvVarsDragController: NSObject <NSTableViewDataSource, NSTableViewDelegate>
+
+@implementation ErrorColorTransformer
 {
-@private
-    IBOutlet NSTableView *_view;
-    IBOutlet NSArrayController *_controller;
+
 }
+
++ (void) initialize
+{
+    [super initialize];
+    [self setValueTransformer: [self alloc] forName: @"ErrorColorTransformer"];
+}
+
++ (Class) transformedValueClass
+{
+    return [NSColor class];
+}
+
++ (BOOL) allowsReverseTransformation
+{
+    return NO;
+}
+
+- (id) transformedValue: (id) value
+{
+    return value ? [NSColor redColor] : [NSColor blackColor];
+}
+
 
 @end

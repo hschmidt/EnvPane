@@ -68,4 +68,15 @@ dropOperation: (NSTableViewDropOperation) dropOperation
     return YES;
 }
 
+
+- (NSString *) tableView: (NSTableView *) tableView
+          toolTipForCell: (NSCell *) cell
+                    rect: (NSRectPointer) rect
+             tableColumn: (NSTableColumn *) tableColumn
+                     row: (NSInteger) row
+           mouseLocation: (NSPoint) mouseLocation
+{
+    return _controller.arrangedObjects[ (NSUInteger) row ][@"error"];
+}
+
 @end
