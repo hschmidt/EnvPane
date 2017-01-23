@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7029183584278C1D9B5576C /* EnvVarsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7029A4E2AA97B125DE739E5 /* EnvVarsTableView.m */; };
 		B70291B6793B2D8BF84745C3 /* NSMutableAttributedString+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = B7029EDB4586D0BF20D58F38 /* NSMutableAttributedString+EnvLib.m */; };
 		B70292979BAB4283068DE2E2 /* Interpolator.m in Sources */ = {isa = PBXBuildFile; fileRef = B70297B8369424DF08AD5FBF /* Interpolator.m */; };
 		B70295340F614FEEC8BD2B4D /* Interpolator.h in Headers */ = {isa = PBXBuildFile; fileRef = B70298F914D985AD8D7715C9 /* Interpolator.h */; };
 		B702956E5C6FB784CD379264 /* NSMutableAttributedString+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = B7029A7D64CEF0D08E15FA8D /* NSMutableAttributedString+EnvLib.h */; };
 		B702969A882E09205821C3D2 /* NSString+EnvLib.m in Sources */ = {isa = PBXBuildFile; fileRef = B7029D7AF8AA1DFA2A433E6E /* NSString+EnvLib.m */; };
 		B7029771D22CA571A33BA684 /* NSString+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = B7029AEAC9BE176913EC2B99 /* NSString+EnvLib.h */; };
+		B702985FE2FBCD8CA9432377 /* EnvVarsTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = B7029626002676DF1876ED2A /* EnvVarsTableView.h */; };
 		D10BFDDC1688DE0B00C6A4CF /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10BFDDB1688DE0B00C6A4CF /* SecurityFoundation.framework */; };
 		D10BFDE31688E81600C6A4CF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10BFDE21688E81600C6A4CF /* ServiceManagement.framework */; };
 		D1313658167714790059AF76 /* EnvVarsController.h in Headers */ = {isa = PBXBuildFile; fileRef = D1313656167714790059AF76 /* EnvVarsController.h */; };
@@ -113,8 +115,10 @@
 
 /* Begin PBXFileReference section */
 		47A7E83A08C3B78F00D0011D /* EnvAgent */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EnvAgent; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7029626002676DF1876ED2A /* EnvVarsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvVarsTableView.h; sourceTree = "<group>"; };
 		B70297B8369424DF08AD5FBF /* Interpolator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interpolator.m; sourceTree = "<group>"; };
 		B70298F914D985AD8D7715C9 /* Interpolator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpolator.h; sourceTree = "<group>"; };
+		B7029A4E2AA97B125DE739E5 /* EnvVarsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvVarsTableView.m; sourceTree = "<group>"; };
 		B7029A7D64CEF0D08E15FA8D /* NSMutableAttributedString+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+EnvLib.h"; sourceTree = "<group>"; };
 		B7029AEAC9BE176913EC2B99 /* NSString+EnvLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EnvLib.h"; sourceTree = "<group>"; };
 		B7029D7AF8AA1DFA2A433E6E /* NSString+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EnvLib.m"; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 				D1EFCA4E16912AD800013C1A /* AboutSheet.xib */,
 				D1EFCA52169240E000013C1A /* AboutSheetController.h */,
 				D1EFCA53169240E000013C1A /* AboutSheetController.m */,
+				B7029A4E2AA97B125DE739E5 /* EnvVarsTableView.m */,
+				B7029626002676DF1876ED2A /* EnvVarsTableView.h */,
 			);
 			path = EnvPane;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 				D19EB2A91E34756500A7AAFE /* ErrorColorTransformer.h in Headers */,
 				D131365D16771BBD0059AF76 /* EnvVarsDragController.h in Headers */,
 				D1EFCA54169240E000013C1A /* AboutSheetController.h in Headers */,
+				B702985FE2FBCD8CA9432377 /* EnvVarsTableView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +538,7 @@
 				D19EB2A81E34756500A7AAFE /* ErrorColorTransformer.m in Sources */,
 				D131365E16771BBD0059AF76 /* EnvVarsDragController.m in Sources */,
 				D1EFCA55169240E000013C1A /* AboutSheetController.m in Sources */,
+				B7029183584278C1D9B5576C /* EnvVarsTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
