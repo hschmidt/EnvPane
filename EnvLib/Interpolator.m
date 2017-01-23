@@ -80,14 +80,15 @@ NSRegularExpression *_variableNameRegex;
                      strictly: (BOOL) strict
 {
     return [self interpolate: environment
-                     onError: ^BOOL( InterpolationException *error ) {
-                         if( strict ) @throw error; else return YES;
+                     onError: ^BOOL( InterpolationException *e ) {
+                         NSLog( @"%@", e );
+                         if( strict ) @throw e; else return YES;
                      }];
 }
 
 
 + (Environment *) interpolate: (Environment *) environment
-                      onError: (BOOL ( ^ )( InterpolationException *error )) onError
+                      onError: (BOOL ( ^ )( InterpolationException *e )) onError
 {
     NSDictionary *dict = environment.dict;
     NSMutableDictionary *dictIn = [NSMutableDictionary dictionaryWithDictionary: dict];
@@ -103,7 +104,6 @@ NSRegularExpression *_variableNameRegex;
             @try {
                 [interpolator _resolve];
             } @catch( InterpolationException *e ) {
-                NSLog( @"%@", e );
                 if( onError && !onError( e ) ) break;
             }
         }
