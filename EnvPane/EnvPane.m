@@ -91,8 +91,13 @@
                       }];
     [self.editableEnvironment enumerateObjectsUsingBlock:
             ^( NSMutableDictionary *entry, NSUInteger idx, BOOL *stop ) {
-                InterpolationException *error = [errors valueForKey: entry[ @"name" ]];
-                entry[ @"error" ] = error ? error.reason : nil;
+                if( [@"PATH" isEqualToString: entry[ @"name" ]] ) {
+                    entry[ @"error" ] = @"The PATH environment variable is not supported. "
+                            "See About EnvPane below for an explanation.";
+                } else {
+                    InterpolationException *error = [errors valueForKey: entry[ @"name" ]];
+                    entry[ @"error" ] = error ? error.reason : nil;
+                }
             }];
     if( errors.count == 0 && ![environment isEqualToEnvironment: _savedEnvironment] ) {
         NSError *error = nil;

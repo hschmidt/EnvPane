@@ -1,4 +1,4 @@
-# EnvPane - An OS X preference pane for environment variables
+# EnvPane - An macOS preference pane for environment variables
 
 <img src="http://diaryproducts.net/files/EnvPane.png" style="float:left"/>
 EnvPane is a preference pane for Mac OS X (10.8 or newer) that lets you set
@@ -9,14 +9,19 @@ immediately, without the need to log out and back in. This works for changes
 made by manually editing `~/.MacOSX/environment.plist` as well via the
 preference pane UI.
 
-EnvPane still works on OS X 10.11 "El Capitan". I haven't tried it on 10.12
-"Sierra" yet. Apple [reimplemented][new_launchd] launchd in 10.10 and in the
-course of doing so deprecated the APIs used by EnvPane and even broke some of
-them (see [issue #11][issue_11]). EnvPane v0.6 adds support for the new but
-undocumented APIs, addressing the deprecation and [issue #11][issue_11].
+EnvPane was tested on OS X 10.09 "Mavericks", OS X 10.11 "El Capitan" and macOS
+Sierra (10.12). It should also work on 10.10 "Yosemite". Apple
+[reimplemented][new_launchd] launchd in 10.10 and in the course of doing so
+deprecated the APIs used by EnvPane and even [broke][issue_11] some of them.
+EnvPane v0.6 adds support for the new but undocumented APIs, addressing the
+deprecation and broken APIs.
 
 [new_launchd]: http://newosxbook.com/articles/jlaunchctl.html
 [issue_11]: https://github.com/hschmidt/EnvPane/issues/11
+
+EnvPane does not work for setting the PATH environment variable. See the [FAQ
+on that topic](#why-cant-I-set-path-with-envpane).
+
 
 ## Download
 
@@ -110,7 +115,8 @@ removing the preference pane doesn't leave orphaned files on the system. The
 
 ### v0.5 and v0.4
 
-Ignore. They are releases made from a fork of this repository, not by the original author and inauspiciously using the EnvPane name. 
+Ignore. They are releases made from a fork of this repository, not by the
+original author and inauspiciously using the EnvPane name.
 
 ### v0.3
 
@@ -138,7 +144,8 @@ Initial release.
 Building from source 
 --------------------
 
-### Requirements ###
+
+## Build Requirements
 
 * Mac OS X 10.8, Mountain Lion
 
@@ -158,7 +165,8 @@ Building from source
 [launchd_source]: https://opensource.apple.com/source/launchd/launchd-442.26.2/
 [discount]: http://www.pell.portland.or.us/~orc/Code/discount/
 
-### Build ###
+
+## Building
 
 1. Clone the [EnvPane repository][envpane_repo] on Github
 
@@ -222,7 +230,8 @@ The environment of running applications has already been copied and will _not_
 be affected.
 
 For applications other than Terminal the only workaround is to restart the
-application. In Terminal, you can update the shell's environment by running
+application. In Terminal on OS X 10.09 and older, you can update the shell's
+environment by running
 
 	eval `launchctl export`
 
@@ -230,8 +239,39 @@ This will update the shell's environment, not Terminal's. Terminal's
 environment is still unchanged and will be passed on to each new shell window
 or tab. This means you will have to run the above command in each subsequently
 opened Terminal tab or window. Ultimately it might be better to just restart
-Terminal.
+Terminal. Unfortunately, 10.10 removed the `export` functionality.
 
+<a id="why-cant-I-set-path-with-envpane"></a>
+### Why can't I set PATH with EnvPane?
+
+That's because OS X treats PATH differently to other environment variables, I
+suspect for security reasons. The special treatment differs from version to
+version of OS X but in a nutshell there are two issues: Firstly, launchd will
+forcefully set PATH to a fixed value, overriding a value set using the standard
+launchd APIs used by EnvPane. Secondly, a login shell launched in Terminal will
+mangle the value by placing entries from `/etc/paths` and `/etc/paths.d` at the
+beginning of the PATH variable. There are workarounds for both issues but
+EnvPane doesn't currently implement those, mainly because they involve root
+privileges, something I've shyed away from so far. You will have to perform
+them manually. The launchd override for PATH can be configured using `launchctl
+config user path` or `launchctl config system path`. See the `man launchctl`
+for details. I *think* the `user` form of that command is broken on El Capitan,
+so you'll have to resort to `system` there. Amusingly, there is no documented
+way revert to the defaults. You'll have to delete
+`/private/var/db/com.apple.xpc.launchd/config/system.plist` and/or
+`/private/var/db/com.apple.xpc.launchd/config/user.plist` and reboot. The
+`/etc/paths` issue can be worked around by duplicating the additional entries
+from `launchctl config … path` in `/etc/paths`. See `man path_helper` for
+details.
+
+My personal opinion is that the hardcoding of PATH by launchd is misguided.
+PATH was meant to be a mere convenience for interactive shell use. If a
+security-sensitive system component needs to ensure that a particular binary is
+executed, it should specify that binary using an absolute PATH.
+
+Another rant: the fact that `launchtl config user path` has system-wide scope
+and therefore needs sudo privileges is also amusing. If it's called "user" then
+it should be user-specific, not global.
 
 ## License
 
@@ -273,6 +313,8 @@ Terminal.
 
 ## Acknowledgements
 
-Kudos to Jonathan Levin for his [reversing][new_launchd] of the new launchd and launchctl. I used the trial version of the [Hopper Disassembler/debugger for OS X][hopper] to figure out the rest.
+Kudos to Jonathan Levin for his [reversing][new_launchd] of the new launchd and
+launchctl. I used the trial version of the [Hopper Disassembler/debugger for OS
+X][hopper] to figure out the rest.
 
 [hopper]: https://www.hopperapp.com/
