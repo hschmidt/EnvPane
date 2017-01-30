@@ -25,12 +25,11 @@ on that topic](#why-cant-I-set-path-with-envpane).
 
 ## Download
 
-For convenience, the pre-built and code-signed binary of EnvPane can be
-[downloaded][envpane_release] from my blog Diary Products. Alternatively you
-might want to grab the [source][envpane_repo] and [build it
-yourself](#building-from-source).
+For convenience, the code-signed binary of EnvPane can be
+[downloaded][envpane_release] from GitHub. Alternatively you might want to grab
+the [source][envpane_repo] and [build it yourself](#building-from-source).
 
-[envpane_release]: http://diaryproducts.net/files/EnvPane-0.3.dmg
+[envpane_release]: https://github.com/hschmidt/EnvPane/releases/tag/releases%2F0.6
 [envpane_repo]: https://github.com/hschmidt/EnvPane
 
 <!-- break -->
@@ -106,7 +105,13 @@ removing the preference pane doesn't leave orphaned files on the system. The
 
 ## Changelog
 
-### v0.6 (unreleased)
+### v0.6
+
+* Support for interpolation of other variables and shell command output
+
+* Support for macOS Sierra
+
+* Minor UI changes and a few bug fixes
 
 * Fix: Projects doesn't build with XCode 7 on OS X El Capitan (10.11)
 
