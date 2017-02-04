@@ -242,4 +242,14 @@
     XCTAssert( [@"" prefixMatches: @".*".toRegex] );
 }
 
+- (void) testShellExpansion
+{
+    // $bar is evaluated by the interpolator, for whom BAR is not defined
+    [self _interpolateDict: @{ @"FOO": @"$(BAR=bar ; echo $BAR)" }
+                 andExpect: @{ @"FOO": @"" }];
+    // We need to escape the dollar sign, so the shell gets to evaluate it
+    [self _interpolateDict: @{ @"FOO": @"$(BAR=bar; echo $$BAR)" }
+                 andExpect: @{ @"FOO": @"bar" }];
+}
+
 @end

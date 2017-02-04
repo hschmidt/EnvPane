@@ -1,4 +1,4 @@
-# EnvPane - An macOS preference pane for environment variables
+# EnvPane - A macOS preference pane for environment variables
 
 <img src="http://diaryproducts.net/files/EnvPane.png" style="float:left"/>
 EnvPane is a preference pane for Mac OS X (10.8 or newer) that lets you set
@@ -19,7 +19,7 @@ deprecation and broken APIs.
 [new_launchd]: http://newosxbook.com/articles/jlaunchctl.html
 [issue_11]: https://github.com/hschmidt/EnvPane/issues/11
 
-EnvPane does not work for setting the PATH environment variable. See the [FAQ
+EnvPane does *not* work for setting the PATH environment variable. See the [FAQ
 on that topic](#why-cant-I-set-path-with-envpane).
 
 
@@ -45,7 +45,8 @@ well-documented and popular mechanism was dropped without an official
 announcement or explanation by Apple. It may have been in [response]
 [flashback] to the Flashback trojan which used that file to inject itself into
 every process, but this is a wild guess, especially considering that there is a
-relatively easy workaround, as demonstrated by the existence of this utility.
+relatively easy workaround, as demonstrated by the existence of this very
+utility.
 
 EnvPane includes (and automatically installs) a `launchd` agent that runs 1)
 early after login and 2) whenever the `~/.MacOSX/environment.plist` changes.
@@ -60,16 +61,17 @@ TODO: Mention /etc/launchd.conf and ~/.launchd.conf
 
 ## Requirements
 
-Mac OS X 10.8, Mountain Lion or higher.
+Mac OS X 10.9 "Mavericks" or higher.
 
 
 ## Installation
 
-1. Download the binary package
-2. Double-click `EnvPane.pref-pane` file
-3. Choose _Install for this user only_
+1. Download [EnvPane.dmg][envpane_release]
+2. Open EnvPane.dmg, a Finder window opens
+3. Double-click the `EnvPane.pref-pane` file
+4. Choose _Install for this user only_
 
-Do not use the _Install for all users_ option. See the
+Do *not* use the _Install for all users_ option. See the
 [FAQ](#why-cant-i-install-the-preference-pane-for-all-users).
 
 
@@ -79,15 +81,46 @@ When you open the _Environment Variables_ preference pane, you will see a
 simple two-column table that lists the environment variables from your
 `~/.MacOSX/environment.plist`. If that file doesn't exist, the table will be
 empty but the file will be created as soon as you you add an entry to the
-table. To add an environment variable by clicking the `+` button. Specifying
-the name the new variable, hit `TAB` and specify the value. Hit Enter. To
-modify a variable, double-click its name or value. Make the desired changes and
-hit `Enter`. To delete an environment variable,
+table. To add an environment variable click the `+` button. Specify the name of
+the new variable, hit `tab` and specify its value. Hit `enter`. To modify a
+variable, click its name or value, make the desired changes and hit `enter`. To
+delete an environment variable, click a row in the table and click the `-`
+button.
 
-Changes are effective immediately in all subsequently launched applications.
-There is no need to reboot or log out and back in. Running applications will
-[not be affected] (#why-arent-running-applications-affected). You need to quit
-and relaunch the application, in order for your changes to take effect.
+Changes are effective immediately (after a delay of a few seconds) in all
+subsequently launched applications. There is no need to reboot or log out.
+However, running applications will [not be affected]
+(#why-arent-running-applications-affected). You need to quit and relaunch the
+application, in order for your changes to take effect.
+
+The `$` character in a value has special meaning. It induces the interpolation
+of other environment variables or the output of shell commands. If the `$`
+character is followed by the name of another variable, e.g. `$FOO` the value of
+that variable will be inserted in place. The referenced variable can be one
+explicitly defined in the preference pane or it can be one from the default
+environment that launchd sets up. The variable name following `$` must contain
+only letters, digits or underscore and may not start with a digit. To
+interpolate a variable whose name does not meet those requirements, place the
+variable name between curly braces, e.g. `${F-O-O}`. You can also interpolate
+the name of an interpolated variable: assuming the variable `EFF` is set to the
+value `F`, `${${EFF}OO}` would reference the variabe FOO. Don't worry if this
+looks confusing, this is an esoteric feature.
+
+To interpolate the output of a shell command, enclose it in parentheses.
+`$(date)`, for example, is replaced with the current date, because that's what
+the `date` program prints to standard output. The command is subject to shell
+expansion–because it is invoked via `/bin/sh -c`–but also to immediate variable
+interpolation by EnvPane as described above. In other words, `$(BAR=bar ; echo
+$BAR)` will not evaluate to `bar` because the `$BAR` reference will be
+interpolated by EnvPane, at a time when BAR is not yet defined. To prevent
+EnvPane from evaluating the reference, you must escape the dollar sign:
+`$(BAR=bar; echo $$BAR)`.
+
+Again, whenever you need a literal dollar sign in a variable value, you need do
+write two dollar signs: `$$`. If you need a closing parentheses inside a
+command interpolation, or a closing curly brace inside a variable
+interpolation, you need to write `$()` or `${}` respectively. I now realize
+that `$)` and $`}` would have been a better choice but it is what it is.
 
 
 ## Uninstallation
@@ -197,6 +230,7 @@ The `-load_all` linker flag is needed to prevent errors like
 exception:-[__NSCFDictionary writeToFile:atomically:createParent:createAncestors:error:]: unrecognized selector sent to instance
 ```
 
+
 ## FAQ
 
 <a id="why-cant-i-install-the-preference-pane-for-all-users"></a>
@@ -278,6 +312,7 @@ Another rant: the fact that `launchtl config user path` has system-wide scope
 and therefore needs sudo privileges is also amusing. If it's called "user" then
 it should be user-specific, not global.
 
+
 ## License
 
     Copyright 2012, 2016, 2017 Hannes Schmidt
@@ -315,6 +350,7 @@ it should be user-specific, not global.
 
     This product includes software developed by
     David Loren Parsons <http://www.pell.portland.or.us/~orc>
+
 
 ## Acknowledgements
 
