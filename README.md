@@ -1,6 +1,7 @@
 # EnvPane - A macOS preference pane for environment variables
 
 <img src="http://diaryproducts.net/files/EnvPane.png" style="float:left"/>
+
 EnvPane is a preference pane for Mac OS X (10.8 or newer) that lets you set
 environment variables for all applications, both GUI and terminal. Not only
 does it restore support for `~/.MacOSX/environment.plist` (see
