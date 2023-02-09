@@ -51,7 +51,7 @@ NSRegularExpression *_variableNameRegex;
     NSRegularExpression *re = [VARIABLE_NAME_RE @"|[$(){}]" toRegex];
     NSMutableArray *tokens = [NSMutableArray array];
     __block NSUInteger i = 0, j;
-    void (^addGap)()=^void {
+    void (^addGap)(void)=^void {
         if( i < j ) {
             NSString *gap = [value substringWithRange: NSMakeRange( i, j - i )];
             [tokens addObject: gap];

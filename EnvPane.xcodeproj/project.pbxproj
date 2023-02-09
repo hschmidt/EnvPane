@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,9 @@
 		B702985FE2FBCD8CA9432377 /* EnvVarsTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = B7029626002676DF1876ED2A /* EnvVarsTableView.h */; };
 		D10BFDDC1688DE0B00C6A4CF /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10BFDDB1688DE0B00C6A4CF /* SecurityFoundation.framework */; };
 		D10BFDE31688E81600C6A4CF /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D10BFDE21688E81600C6A4CF /* ServiceManagement.framework */; };
+		D11D5903299375B600C9BA62 /* AboutSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11D5905299375B600C9BA62 /* AboutSheet.xib */; };
+		D11D590A2993761A00C9BA62 /* EnvPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11D59062993761A00C9BA62 /* EnvPane.xib */; };
+		D11D590B2993761A00C9BA62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D11D59082993761A00C9BA62 /* InfoPlist.strings */; };
 		D1313658167714790059AF76 /* EnvVarsController.h in Headers */ = {isa = PBXBuildFile; fileRef = D1313656167714790059AF76 /* EnvVarsController.h */; };
 		D1313659167714790059AF76 /* EnvVarsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1313657167714790059AF76 /* EnvVarsController.m */; };
 		D131365D16771BBD0059AF76 /* EnvVarsDragController.h in Headers */ = {isa = PBXBuildFile; fileRef = D131365B16771BBD0059AF76 /* EnvVarsDragController.h */; };
@@ -26,6 +29,8 @@
 		D1334E3B16858FFC0018F00D /* Environment.m in Sources */ = {isa = PBXBuildFile; fileRef = D1334E3916858FFC0018F00D /* Environment.m */; };
 		D1334E3C168639270018F00D /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D1334E3E168699030018F00D /* EnvPane.icns in Resources */ = {isa = PBXBuildFile; fileRef = D1334E3D168699030018F00D /* EnvPane.icns */; };
+		D1377F4D2993801A003CCA3E /* ErrorColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D1377F4B2993801A003CCA3E /* ErrorColorTransformer.m */; };
+		D1377F4E2993801A003CCA3E /* ErrorColorTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D1377F4C2993801A003CCA3E /* ErrorColorTransformer.h */; };
 		D14EB1991E231B6F000BAD4A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D14EB1981E231B6F000BAD4A /* Tests.m */; };
 		D14EB19B1E231B6F000BAD4A /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D154535116CC4045008A3ADB /* NSFileManager+EnvLib.h in Headers */ = {isa = PBXBuildFile; fileRef = D154534F16CC4045008A3ADB /* NSFileManager+EnvLib.h */; };
@@ -42,15 +47,10 @@
 		D197F2191683EF98001CD067 /* net.hannesschmidt.EnvAgent.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = E2ADE0C2083951BC000B79B2 /* net.hannesschmidt.EnvAgent.plist */; };
 		D19BDB5F1671286100C6467B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19BDB5E1671286100C6467B /* Cocoa.framework */; };
 		D19BDB611671286100C6467B /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19BDB601671286100C6467B /* PreferencePanes.framework */; };
-		D19BDB6B1671286100C6467B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D19BDB691671286100C6467B /* InfoPlist.strings */; };
 		D19BDB6F1671286100C6467B /* EnvPane.m in Sources */ = {isa = PBXBuildFile; fileRef = D19BDB6E1671286100C6467B /* EnvPane.m */; };
-		D19BDB741671286100C6467B /* EnvPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = D19BDB721671286100C6467B /* EnvPane.xib */; };
-		D19EB2A81E34756500A7AAFE /* ErrorColorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D19EB2A61E34756500A7AAFE /* ErrorColorTransformer.m */; };
-		D19EB2A91E34756500A7AAFE /* ErrorColorTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = D19EB2A71E34756500A7AAFE /* ErrorColorTransformer.h */; };
 		D1C85DBE167FCC6C007C2CE7 /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
 		D1E16E68167292D100724499 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E16E66167292D100724499 /* CoreFoundation.framework */; };
 		D1EFCA4D16911E3400013C1A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D1FC1DBC168F90AB004F5901 /* README.md */; };
-		D1EFCA4F16912AD800013C1A /* AboutSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1EFCA4E16912AD800013C1A /* AboutSheet.xib */; };
 		D1EFCA5116912C6600013C1A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1EFCA5016912C6600013C1A /* WebKit.framework */; };
 		D1EFCA54169240E000013C1A /* AboutSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = D1EFCA52169240E000013C1A /* AboutSheetController.h */; };
 		D1EFCA55169240E000013C1A /* AboutSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1EFCA53169240E000013C1A /* AboutSheetController.m */; };
@@ -125,6 +125,9 @@
 		B7029EDB4586D0BF20D58F38 /* NSMutableAttributedString+EnvLib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+EnvLib.m"; sourceTree = "<group>"; };
 		D10BFDDB1688DE0B00C6A4CF /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		D10BFDE21688E81600C6A4CF /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		D11D5904299375B600C9BA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AboutSheet.xib; sourceTree = "<group>"; };
+		D11D59072993761A00C9BA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EnvPane.xib; sourceTree = "<group>"; };
+		D11D59092993761A00C9BA62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D1313656167714790059AF76 /* EnvVarsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvVarsController.h; sourceTree = "<group>"; };
 		D1313657167714790059AF76 /* EnvVarsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnvVarsController.m; sourceTree = "<group>"; };
 		D131365B16771BBD0059AF76 /* EnvVarsDragController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvVarsDragController.h; sourceTree = "<group>"; };
@@ -132,6 +135,9 @@
 		D1334E3816858FFC0018F00D /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		D1334E3916858FFC0018F00D /* Environment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Environment.m; sourceTree = "<group>"; };
 		D1334E3D168699030018F00D /* EnvPane.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = EnvPane.icns; sourceTree = "<group>"; };
+		D1377F4B2993801A003CCA3E /* ErrorColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorColorTransformer.m; sourceTree = "<group>"; };
+		D1377F4C2993801A003CCA3E /* ErrorColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorColorTransformer.h; sourceTree = "<group>"; };
+		D1377F50299388B4003CCA3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EnvPane.strings; sourceTree = "<group>"; };
 		D14EB1961E231B6F000BAD4A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14EB1981E231B6F000BAD4A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		D14EB19A1E231B6F000BAD4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,16 +159,11 @@
 		D19BDB641671286100C6467B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D19BDB651671286100C6467B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D19BDB681671286100C6467B /* EnvPane-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EnvPane-Info.plist"; sourceTree = "<group>"; };
-		D19BDB6A1671286100C6467B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D19BDB6C1671286100C6467B /* EnvPane-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EnvPane-Prefix.pch"; sourceTree = "<group>"; };
 		D19BDB6D1671286100C6467B /* EnvPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnvPane.h; sourceTree = "<group>"; };
 		D19BDB6E1671286100C6467B /* EnvPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnvPane.m; sourceTree = "<group>"; };
-		D19BDB731671286100C6467B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EnvPane.xib; sourceTree = "<group>"; };
-		D19EB2A61E34756500A7AAFE /* ErrorColorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorColorTransformer.m; sourceTree = "<group>"; };
-		D19EB2A71E34756500A7AAFE /* ErrorColorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorColorTransformer.h; sourceTree = "<group>"; };
 		D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEnvLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E16E66167292D100724499 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
-		D1EFCA4E16912AD800013C1A /* AboutSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutSheet.xib; sourceTree = "<group>"; };
 		D1EFCA5016912C6600013C1A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D1EFCA52169240E000013C1A /* AboutSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSheetController.h; sourceTree = "<group>"; };
 		D1EFCA53169240E000013C1A /* AboutSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSheetController.m; sourceTree = "<group>"; };
@@ -252,18 +253,18 @@
 		D19BDB661671286100C6467B /* EnvPane */ = {
 			isa = PBXGroup;
 			children = (
-				D19EB2A61E34756500A7AAFE /* ErrorColorTransformer.m */,
-				D19EB2A71E34756500A7AAFE /* ErrorColorTransformer.h */,
+				D1377F4C2993801A003CCA3E /* ErrorColorTransformer.h */,
+				D1377F4B2993801A003CCA3E /* ErrorColorTransformer.m */,
+				D11D59062993761A00C9BA62 /* EnvPane.xib */,
 				D19BDB6D1671286100C6467B /* EnvPane.h */,
 				D19BDB6E1671286100C6467B /* EnvPane.m */,
 				D1313656167714790059AF76 /* EnvVarsController.h */,
 				D1313657167714790059AF76 /* EnvVarsController.m */,
 				D131365B16771BBD0059AF76 /* EnvVarsDragController.h */,
 				D131365C16771BBD0059AF76 /* EnvVarsDragController.m */,
-				D19BDB721671286100C6467B /* EnvPane.xib */,
 				D1334E3D168699030018F00D /* EnvPane.icns */,
 				D19BDB671671286100C6467B /* Supporting Files */,
-				D1EFCA4E16912AD800013C1A /* AboutSheet.xib */,
+				D11D5905299375B600C9BA62 /* AboutSheet.xib */,
 				D1EFCA52169240E000013C1A /* AboutSheetController.h */,
 				D1EFCA53169240E000013C1A /* AboutSheetController.m */,
 				B7029A4E2AA97B125DE739E5 /* EnvVarsTableView.m */,
@@ -276,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				D19BDB681671286100C6467B /* EnvPane-Info.plist */,
-				D19BDB691671286100C6467B /* InfoPlist.strings */,
+				D11D59082993761A00C9BA62 /* InfoPlist.strings */,
 				D19BDB6C1671286100C6467B /* EnvPane-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -352,8 +353,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1313658167714790059AF76 /* EnvVarsController.h in Headers */,
-				D19EB2A91E34756500A7AAFE /* ErrorColorTransformer.h in Headers */,
 				D131365D16771BBD0059AF76 /* EnvVarsDragController.h in Headers */,
+				D1377F4E2993801A003CCA3E /* ErrorColorTransformer.h in Headers */,
 				D1EFCA54169240E000013C1A /* AboutSheetController.h in Headers */,
 				B702985FE2FBCD8CA9432377 /* EnvVarsTableView.h in Headers */,
 			);
@@ -461,7 +462,7 @@
 		E2ADE0A208395023000B79B2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					D14EB1951E231B6F000BAD4A = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -469,11 +470,12 @@
 				};
 			};
 			buildConfigurationList = 47BFFDF808902CAE003DA0CC /* Build configuration list for PBXProject "EnvPane" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E2ADE09E08395023000B79B2;
 			productRefGroup = E2ADE0B2083950E7000B79B2 /* Products */;
@@ -501,10 +503,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1EFCA4D16911E3400013C1A /* README.md in Resources */,
-				D19BDB6B1671286100C6467B /* InfoPlist.strings in Resources */,
-				D19BDB741671286100C6467B /* EnvPane.xib in Resources */,
+				D11D590B2993761A00C9BA62 /* InfoPlist.strings in Resources */,
+				D11D590A2993761A00C9BA62 /* EnvPane.xib in Resources */,
 				D1334E3E168699030018F00D /* EnvPane.icns in Resources */,
-				D1EFCA4F16912AD800013C1A /* AboutSheet.xib in Resources */,
+				D11D5903299375B600C9BA62 /* AboutSheet.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,9 +535,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1377F4D2993801A003CCA3E /* ErrorColorTransformer.m in Sources */,
 				D19BDB6F1671286100C6467B /* EnvPane.m in Sources */,
 				D1313659167714790059AF76 /* EnvVarsController.m in Sources */,
-				D19EB2A81E34756500A7AAFE /* ErrorColorTransformer.m in Sources */,
 				D131365E16771BBD0059AF76 /* EnvVarsDragController.m in Sources */,
 				D1EFCA55169240E000013C1A /* AboutSheetController.m in Sources */,
 				B7029183584278C1D9B5576C /* EnvVarsTableView.m in Sources */,
@@ -592,20 +594,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D19BDB691671286100C6467B /* InfoPlist.strings */ = {
+		D11D5905299375B600C9BA62 /* AboutSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D19BDB6A1671286100C6467B /* en */,
+				D11D5904299375B600C9BA62 /* Base */,
 			);
-			name = InfoPlist.strings;
+			name = AboutSheet.xib;
 			sourceTree = "<group>";
 		};
-		D19BDB721671286100C6467B /* EnvPane.xib */ = {
+		D11D59062993761A00C9BA62 /* EnvPane.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D19BDB731671286100C6467B /* en */,
+				D11D59072993761A00C9BA62 /* Base */,
+				D1377F50299388B4003CCA3E /* en */,
 			);
 			name = EnvPane.xib;
+			sourceTree = "<group>";
+		};
+		D11D59082993761A00C9BA62 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D11D59092993761A00C9BA62 /* Base */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -614,6 +625,8 @@
 		47BFFDF108902CAE003DA0CC /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_NAME = EnvAgent;
 				SKIP_INSTALL = YES;
 			};
@@ -622,6 +635,8 @@
 		47BFFDF208902CAE003DA0CC /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_NAME = EnvAgent;
 				SKIP_INSTALL = YES;
 			};
@@ -630,6 +645,8 @@
 		47BFFDF308902CAE003DA0CC /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				DEAD_CODE_STRIPPING = YES;
 				PRODUCT_NAME = EnvAgent;
 				SKIP_INSTALL = YES;
 			};
@@ -639,24 +656,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
@@ -681,12 +709,19 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(launchd_source_dir)/liblaunch /usr/local/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(launchd_source_dir)/liblaunch",
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
 					"-Wno-logical-op-parentheses",
@@ -699,22 +734,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -737,11 +783,18 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(launchd_source_dir)/liblaunch /usr/local/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(launchd_source_dir)/liblaunch",
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
 					"-Wno-logical-op-parentheses",
@@ -754,22 +807,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_ASSIGN_ENUM = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -792,11 +856,18 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					/opt/homebrew/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				OTHER_LDFLAGS = "-all_load";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "$(launchd_source_dir)/liblaunch /usr/local/include";
+				USER_HEADER_SEARCH_PATHS = (
+					"$(launchd_source_dir)/liblaunch",
+					/usr/local/include,
+					/opt/homebrew/include,
+				);
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
 					"-Wno-logical-op-parentheses",
@@ -810,10 +881,15 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -825,9 +901,14 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -839,9 +920,14 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -851,11 +937,14 @@
 		D19BDB761671286100C6467B /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				OTHER_LDFLAGS = (
@@ -871,9 +960,12 @@
 		D19BDB771671286100C6467B /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
 				INSTALL_PATH = /;
 				OTHER_LDFLAGS = (
@@ -890,9 +982,12 @@
 		D19BDB781671286100C6467B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
 				INSTALL_PATH = /;
 				OTHER_LDFLAGS = (
@@ -909,9 +1004,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = EnvLib;
 				SKIP_INSTALL = YES;
+				launchd_source_dir = "$(SRCROOT)/../launchd";
 			};
 			name = Development;
 		};
@@ -919,9 +1016,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = EnvLib;
 				SKIP_INSTALL = YES;
+				launchd_source_dir = "$(SRCROOT)/../launchd";
 			};
 			name = Deployment;
 		};
@@ -929,9 +1028,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = EnvLib;
 				SKIP_INSTALL = YES;
+				launchd_source_dir = "$(SRCROOT)/../launchd";
 			};
 			name = Default;
 		};

@@ -1,0 +1,24 @@
+
+/* Class = "NSWindow"; title = "<< do not localize >>"; ObjectID = "12"; */
+"12.title" = "<< do not localize >>";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "104"; */
+"104.headerCell.title" = "Name";
+
+/* Class = "NSTableColumn"; headerCell.title = "Value"; ObjectID = "105"; */
+"105.headerCell.title" = "Value";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "106"; */
+"106.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "107"; */
+"107.title" = "Text Cell";
+
+/* Class = "NSMenu"; title = "Options"; ObjectID = "240"; */
+"240.title" = "Options";
+
+/* Class = "NSMenuItem"; title = "About EnvPane"; ObjectID = "244"; */
+"244.title" = "About EnvPane";
+
+/* Class = "NSTextFieldCell"; title = "Oops!"; ObjectID = "NBO-Oz-cPv"; */
+"NBO-Oz-cPv.title" = "Oops!";
