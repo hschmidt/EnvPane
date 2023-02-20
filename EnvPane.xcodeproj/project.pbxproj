@@ -49,6 +49,7 @@
 		D19BDB611671286100C6467B /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19BDB601671286100C6467B /* PreferencePanes.framework */; };
 		D19BDB6F1671286100C6467B /* EnvPane.m in Sources */ = {isa = PBXBuildFile; fileRef = D19BDB6E1671286100C6467B /* EnvPane.m */; };
 		D1C85DBE167FCC6C007C2CE7 /* libEnvLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */; };
+		D1DF567E29A3108D00F15FFE /* EnvPane.png in Resources */ = {isa = PBXBuildFile; fileRef = D1DF567D29A3106600F15FFE /* EnvPane.png */; };
 		D1E16E68167292D100724499 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E16E66167292D100724499 /* CoreFoundation.framework */; };
 		D1EFCA4D16911E3400013C1A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D1FC1DBC168F90AB004F5901 /* README.md */; };
 		D1EFCA5116912C6600013C1A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1EFCA5016912C6600013C1A /* WebKit.framework */; };
@@ -163,6 +164,7 @@
 		D19BDB6D1671286100C6467B /* EnvPane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnvPane.h; sourceTree = "<group>"; };
 		D19BDB6E1671286100C6467B /* EnvPane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnvPane.m; sourceTree = "<group>"; };
 		D1C85DAF167FC18B007C2CE7 /* libEnvLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEnvLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1DF567D29A3106600F15FFE /* EnvPane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnvPane.png; sourceTree = "<group>"; };
 		D1E16E66167292D100724499 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		D1EFCA5016912C6600013C1A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D1EFCA52169240E000013C1A /* AboutSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSheetController.h; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		E2ADE09E08395023000B79B2 = {
 			isa = PBXGroup;
 			children = (
+				D1DF567D29A3106600F15FFE /* EnvPane.png */,
 				D1FC1DBC168F90AB004F5901 /* README.md */,
 				D1F739AE168F7F40009F8342 /* NOTICE */,
 				D1F739AD168EFA01009F8342 /* LICENSE */,
@@ -508,6 +511,7 @@
 				D11D590A2993761A00C9BA62 /* EnvPane.xib in Resources */,
 				D1334E3E168699030018F00D /* EnvPane.icns in Resources */,
 				D11D5903299375B600C9BA62 /* AboutSheet.xib in Resources */,
+				D1DF567E29A3108D00F15FFE /* EnvPane.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
