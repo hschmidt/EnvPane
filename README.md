@@ -2,16 +2,20 @@
 
 <img src="EnvPane.png" style="float:left"/>
 
-EnvPane is a preference pane for Mac OS X (10.8 or newer) that lets you set
-environment variables for all applications, both GUI and terminal. Not only
-does it restore support for `~/.MacOSX/environment.plist` (see
-[Background](#background)), it also publishes your changes to the environment
-immediately, without the need to log out and back in. This works for changes
-made by manually editing `~/.MacOSX/environment.plist` as well via the
-preference pane UI.
+News: Release 0.7 is built for macOS 12 "Monterey" and up. It uses code-signed,
+universal binaries. 
 
-EnvPane was tested on OS X 10.09 "Mavericks", OS X 10.11 "El Capitan" and macOS
-Sierra (10.12). It should also work on 10.10 "Yosemite". Apple
+EnvPane is a preference pane for macOS that lets you set environment variables
+for all applications, both GUI and terminal. Not only does it restore support
+for `~/.MacOSX/environment.plist` (see[Background](#background)), it also
+publishes your changes to the environment immediately, without the need to log
+out and back in. This works for changes made by manually editing
+`~/.MacOSX/environment.plist` as well via the preference pane UI.
+
+EnvPane 0.7 was tested under macOS 12 "Monterey" on Apple Silicon and Intel.
+
+EnvPane 0.6 was tested under OS X 10.09 "Mavericks", OS X 10.11 "El Capitan" and
+macOS Sierra (10.12). It should also work on 10.10 "Yosemite". Apple
 [reimplemented][new_launchd] launchd in 10.10 and in the course of doing so
 deprecated the APIs used by EnvPane and even [broke][issue_11] some of them.
 EnvPane v0.6 adds support for the new but undocumented APIs, addressing the
@@ -30,7 +34,7 @@ For convenience, the code-signed binary of EnvPane can be
 [downloaded][envpane_release] from GitHub. Alternatively you might want to grab
 the [source][envpane_repo] and [build it yourself](#building-from-source).
 
-[envpane_release]: https://github.com/hschmidt/EnvPane/releases/tag/releases%2F0.6
+[envpane_release]: https://github.com/hschmidt/EnvPane/releases/tag/releases%2F0.7
 [envpane_repo]: https://github.com/hschmidt/EnvPane
 
 <!-- break -->
@@ -62,7 +66,9 @@ TODO: Mention /etc/launchd.conf and ~/.launchd.conf
 
 ## Requirements
 
-Mac OS X 10.9 "Mavericks" or higher.
+macOS 12 "Monterey" or higher. 
+
+For release 0.6, Mac OS X 10.9 "Mavericks" or higher.'
 
 
 ## Installation
@@ -138,6 +144,18 @@ removing the preference pane doesn't leave orphaned files on the system. The
 
 
 ## Changelog
+
+### v0.7
+
+* Code-signed with my Apple Developer ID
+
+* Universal binary (Apple Silicon and Intel)
+
+* Works in dark mode
+
+* Dealt with a few deprecations
+
+* Fixed a font color issue in dark mode
 
 ### v0.6
 
