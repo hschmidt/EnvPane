@@ -32,7 +32,8 @@ writeRowsWithIndexes: (NSIndexSet *) rowIndexes
         toPasteboard: (NSPasteboard *) pasteboard
 {
     [pasteboard declareTypes: @[ EnvVarsNodeType ] owner: self];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject: rowIndexes];
+    NSError *error = nil;
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject: rowIndexes requiringSecureCoding:YES error:&error];
     [pasteboard setData: data forType: EnvVarsNodeType];
     return YES;
 }
@@ -57,7 +58,8 @@ dropOperation: (NSTableViewDropOperation) dropOperation
     NSUInteger row = (NSUInteger) _row;
 
     NSData *data = [[info draggingPasteboard] dataForType: EnvVarsNodeType];
-    NSIndexSet *rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+    NSError *error = nil;
+    NSIndexSet *rowIndexes = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSIndexSet class] fromData: data error: &error];
     NSArray *rows = [[_controller arrangedObjects] objectsAtIndexes: rowIndexes];
     __block NSUInteger offset = 0;
     [rowIndexes enumerateIndexesUsingBlock: ^( NSUInteger rowIndex, BOOL *stop ) {

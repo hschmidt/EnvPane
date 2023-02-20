@@ -31,7 +31,7 @@
 
 - (void) awakeFromNib
 {
-    CGFloat fontSize = [NSFont systemFontSizeForControlSize: NSSmallControlSize];
+    CGFloat fontSize = [NSFont systemFontSizeForControlSize: NSControlSizeSmall];
     NSFont *font = [NSFont userFixedPitchFontOfSize: fontSize];
     NSDictionary *code = @{
             NSFontAttributeName: font,
