@@ -462,6 +462,7 @@
 		E2ADE0A208395023000B79B2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					D14EB1951E231B6F000BAD4A = {
@@ -625,9 +626,13 @@
 		47BFFDF108902CAE003DA0CC /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEAD_CODE_STRIPPING = YES;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.EnvPane;
 				PRODUCT_NAME = EnvAgent;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Development;
@@ -635,22 +640,15 @@
 		47BFFDF208902CAE003DA0CC /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				DEAD_CODE_STRIPPING = YES;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4LMPAN643V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.EnvPane;
 				PRODUCT_NAME = EnvAgent;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Deployment;
-		};
-		47BFFDF308902CAE003DA0CC /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
-				DEAD_CODE_STRIPPING = YES;
-				PRODUCT_NAME = EnvAgent;
-				SKIP_INSTALL = YES;
-			};
-			name = Default;
 		};
 		47BFFDF908902CAE003DA0CC /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -667,9 +665,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -681,20 +677,19 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0.7;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
@@ -709,19 +704,25 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					/opt/homebrew/lib,
-				);
+				LIBRARY_SEARCH_PATHS = /opt/homebrew/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 0.7;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
-				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(launchd_source_dir)/liblaunch",
+					/opt/homebrew/include,
 					/usr/local/include,
+				);
+				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = (
+					"$(launchd_source_dir)/liblaunch",
 					/opt/homebrew/include,
 				);
+				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = (
+					"$(launchd_source_dir)/liblaunch",
+					/usr/local/include,
+				);
+				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
 					"-Wno-logical-op-parentheses",
@@ -745,9 +746,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
 				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
@@ -758,17 +757,16 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
+				CURRENT_PROJECT_VERSION = 0.7;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
@@ -783,18 +781,26 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					/opt/homebrew/lib,
-				);
+				LIBRARY_SEARCH_PATHS = /opt/homebrew/lib;
+				"LIBRARY_SEARCH_PATHS[arch=arm64]" = /opt/homebrew/lib;
+				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
+				MARKETING_VERSION = 0.7;
 				OTHER_LDFLAGS = "-all_load";
-				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = (
 					"$(launchd_source_dir)/liblaunch",
+					/opt/homebrew/include,
 					/usr/local/include,
+				);
+				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = (
+					"$(launchd_source_dir)/liblaunch",
 					/opt/homebrew/include,
 				);
+				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = (
+					"$(launchd_source_dir)/liblaunch",
+					/usr/local/include,
+				);
+				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_CFLAGS = (
 					"-Wno-gnu",
 					"-Wno-logical-op-parentheses",
@@ -802,79 +808,6 @@
 				launchd_source_dir = "$(SRCROOT)/../launchd-442.26.2";
 			};
 			name = Deployment;
-		};
-		47BFFDFB08902CAE003DA0CC /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_WARN_ASSIGN_ENUM = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = NO;
-				CLANG_WARN_OBJC_EXPLICIT_OWNERSHIP_TYPE = YES;
-				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = NO;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES_AGGRESSIVE;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
-				DEAD_CODE_STRIPPING = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = NO;
-				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
-				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
-				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
-				GCC_WARN_PEDANTIC = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_SIGN_COMPARE = YES;
-				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNKNOWN_PRAGMAS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
-					/opt/homebrew/lib,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.4;
-				OTHER_LDFLAGS = "-all_load";
-				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = (
-					"$(launchd_source_dir)/liblaunch",
-					/usr/local/include,
-					/opt/homebrew/include,
-				);
-				WARNING_CFLAGS = (
-					"-Wno-gnu",
-					"-Wno-logical-op-parentheses",
-				);
-				launchd_source_dir = "$(SRCROOT)/../launchd-442.26.2";
-			};
-			name = Default;
 		};
 		D14EB19E1E231B6F000BAD4A /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -915,36 +848,14 @@
 			};
 			name = Deployment;
 		};
-		D14EB1A01E231B6F000BAD4A /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Default;
-		};
 		D19BDB761671286100C6467B /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DSTROOT = /;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
 				OTHER_LDFLAGS = (
@@ -960,12 +871,10 @@
 		D19BDB771671286100C6467B /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				DEVELOPMENT_ASSET_PATHS = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 4LMPAN643V;
 				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
 				INSTALL_PATH = /;
 				OTHER_LDFLAGS = (
@@ -978,27 +887,6 @@
 				WRAPPER_EXTENSION = prefPane;
 			};
 			name = Deployment;
-		};
-		D19BDB781671286100C6467B /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Hannes Schmidt (4LMPAN643V)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EnvPane/EnvPane-Prefix.pch";
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				INFOPLIST_FILE = "EnvPane/EnvPane-Info.plist";
-				INSTALL_PATH = /;
-				OTHER_LDFLAGS = (
-					"-lmarkdown",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.hannesschmidt.EnvPane;
-				PRODUCT_NAME = EnvPane;
-				WRAPPER_EXTENSION = prefPane;
-			};
-			name = Default;
 		};
 		D1C85DB0167FC18B007C2CE7 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -1024,18 +912,6 @@
 			};
 			name = Deployment;
 		};
-		D1C85DB2167FC18B007C2CE7 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
-				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = EnvLib;
-				SKIP_INSTALL = YES;
-				launchd_source_dir = "$(SRCROOT)/../launchd";
-			};
-			name = Default;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1044,7 +920,6 @@
 			buildConfigurations = (
 				47BFFDF108902CAE003DA0CC /* Development */,
 				47BFFDF208902CAE003DA0CC /* Deployment */,
-				47BFFDF308902CAE003DA0CC /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -1054,7 +929,6 @@
 			buildConfigurations = (
 				47BFFDF908902CAE003DA0CC /* Development */,
 				47BFFDFA08902CAE003DA0CC /* Deployment */,
-				47BFFDFB08902CAE003DA0CC /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -1064,7 +938,6 @@
 			buildConfigurations = (
 				D14EB19E1E231B6F000BAD4A /* Development */,
 				D14EB19F1E231B6F000BAD4A /* Deployment */,
-				D14EB1A01E231B6F000BAD4A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -1074,7 +947,6 @@
 			buildConfigurations = (
 				D19BDB761671286100C6467B /* Development */,
 				D19BDB771671286100C6467B /* Deployment */,
-				D19BDB781671286100C6467B /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;
@@ -1084,7 +956,6 @@
 			buildConfigurations = (
 				D1C85DB0167FC18B007C2CE7 /* Development */,
 				D1C85DB1167FC18B007C2CE7 /* Deployment */,
-				D1C85DB2167FC18B007C2CE7 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Deployment;

@@ -108,7 +108,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "hdiutil create -volname EnvPane-0.6 -srcfolder &quot;$ARCHIVE_PRODUCTS_PATH&quot; &quot;$BUILD_DIR/EnvPane-0.6.dmg&quot;&#10;mv &quot;$BUILD_DIR/EnvPane-0.6.dmg&quot; &quot;$ARCHIVE_PRODUCTS_PATH&quot;">
+               scriptText = "hdiutil create -volname EnvPane-$MARKETING_VERSION -srcfolder &quot;$ARCHIVE_PRODUCTS_PATH&quot; &quot;$BUILD_DIR/EnvPane-$MARKETING_VERSION.dmg&quot;&#10;mv &quot;$BUILD_DIR/EnvPane-$MARKETING_VERSION.dmg&quot; &quot;$ARCHIVE_PRODUCTS_PATH&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
