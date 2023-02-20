@@ -49,8 +49,32 @@
     self.agentInstalled = NO;
 }
 
+// https://blog.timschroeder.net/2016/07/16/the-strange-case-of-the-os-x-system-preferences-window-width/
+
+-(float)preferenceWindowWidth
+{
+    float result = 668.0; // default in case something goes wrong
+    NSMutableArray *windows = (NSMutableArray *)CFBridgingRelease(CGWindowListCopyWindowInfo
+      (kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID));
+    int myProcessIdentifier = [[NSProcessInfo processInfo] processIdentifier];
+    BOOL foundWidth = NO;
+    for (NSDictionary *window in windows) {
+        int windowProcessIdentifier = [[window objectForKey:@"kCGWindowOwnerPID"] intValue];
+        if ((myProcessIdentifier == windowProcessIdentifier) && (!foundWidth)) {
+            foundWidth = YES;
+            NSDictionary *bounds = [window objectForKey:@"kCGWindowBounds"];
+            result = [[bounds valueForKey:@"Width"] floatValue];
+        }
+    }
+    return result;
+}
+
 - (void) mainViewDidLoad
 {
+    NSSize size = self.mainView.frame.size;
+    size.width = [self preferenceWindowWidth];
+    [[self mainView] setFrameSize:size];
+
     _savedEnvironment = [Environment loadPlist];
     self.editableEnvironment = [_savedEnvironment toArrayOfEntries];
     NSError *error = nil;
