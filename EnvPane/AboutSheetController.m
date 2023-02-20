@@ -41,7 +41,8 @@
 {
     [super loadView];
     NSError *error;
-    NSURL *readmeUrl = [self.nibBundle URLForResource: @"README" withExtension: @"md"];
+    NSURL *readmeUrl = [self.nibBundle URLForResource: @"README"
+                                        withExtension: @"md"];
     NSString *readme = [NSString stringWithContentsOfURL: readmeUrl
                                                 encoding: NSUTF8StringEncoding
                                                    error: &error];
