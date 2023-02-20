@@ -87,7 +87,7 @@ Do *not* use the _Install for all users_ option. See the
 When you open the _Environment Variables_ preference pane, you will see a
 simple two-column table that lists the environment variables from your
 `~/.MacOSX/environment.plist`. If that file doesn't exist, the table will be
-empty but the file will be created as soon as you you add an entry to the
+empty but the file will be created as soon as you add an entry to the
 table. To add an environment variable click the `+` button. Specify the name of
 the new variable, hit `tab` and specify its value. Hit `enter`. To modify a
 variable, click its name or value, make the desired changes and hit `enter`. To
@@ -116,7 +116,7 @@ looks confusing, this is an esoteric feature.
 To interpolate the output of a shell command, enclose it in parentheses.
 `$(date)`, for example, is replaced with the current date, because that's what
 the `date` program prints to standard output. The command is subject to shell
-expansion–because it is invoked via `/bin/sh -c`–but also to immediate variable
+expansion –because it is invoked via `/bin/sh -c`– but also to immediate variable
 interpolation by EnvPane as described above. In other words, `$(BAR=bar ; echo
 $BAR)` will not evaluate to `bar` because the `$BAR` reference will be
 interpolated by EnvPane, at a time when BAR is not yet defined. To prevent
@@ -177,12 +177,12 @@ original author and inauspiciously using the EnvPane name.
 
 ### v0.3
 
-Fix: Preference pane fails to load if ~/Library/LaunchAgents is missing 
+Fix: Preference pane fails to load if `~/Library/LaunchAgents` is missing 
 ([issue #2][issue_2])
 
 ### v0.2
 
-Fix: Preference pane fails to load if ~/.MacOSX or ~/.MacOSX/environment.plist
+Fix: Preference pane fails to load if `~/.MacOSX` or `~/.MacOSX/environment.plist`
 are missing ([issue #1][issue_1]).
 
 ### v0.1.1
