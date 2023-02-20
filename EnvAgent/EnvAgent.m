@@ -23,7 +23,7 @@
 #import "Constants.h"
 #import "Interpolator.h"
 
-int _try_main( int argc, const char **argv )
+static int _try_main( int argc, const char **argv )
 {
     NSLog( @"Started agent %s (%u)", argv[ 0 ], getpid() );
     /*
