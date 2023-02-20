@@ -42,7 +42,7 @@
 
 - (id) transformedValue: (id) value
 {
-    return value ? [NSColor redColor] : [NSColor blackColor];
+    return value ? [NSColor redColor] : nil;
 }
 
 
