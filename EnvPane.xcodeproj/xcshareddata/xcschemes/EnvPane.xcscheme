@@ -108,7 +108,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "hdiutil create -volname EnvPane-$MARKETING_VERSION -srcfolder &quot;$ARCHIVE_PRODUCTS_PATH&quot; &quot;$BUILD_DIR/EnvPane-$MARKETING_VERSION.dmg&quot;&#10;mv &quot;$BUILD_DIR/EnvPane-$MARKETING_VERSION.dmg&quot; &quot;$ARCHIVE_PRODUCTS_PATH&quot;&#10;">
+               scriptText = "exec &gt; ${PROJECT_DIR}/post-archive.log 2&gt;&amp;1&#10;&#10;hdiutil create -volname EnvPane-$MARKETING_VERSION -srcfolder &quot;$ARCHIVE_PRODUCTS_PATH&quot; &quot;$BUILD_DIR/$PRODUCT_NAME-$MARKETING_VERSION.dmg&quot;&#10;&#10;/usr/bin/ditto -c -k -V &quot;$ARCHIVE_PRODUCTS_PATH&quot; &quot;$BUILD_DIR/$PRODUCT_NAME-$MARKETING_VERSION.zip&quot;&#10;&#10;mv &quot;$BUILD_DIR/$PRODUCT_NAME-$MARKETING_VERSION.dmg&quot; &quot;$ARCHIVE_PRODUCTS_PATH&quot;&#10;mv &quot;$BUILD_DIR/$PRODUCT_NAME-$MARKETING_VERSION.zip&quot; &quot;$ARCHIVE_PRODUCTS_PATH&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
