@@ -2,8 +2,16 @@
 
 <img src="EnvPane.png" style="float:left"/>
 
-News: Release 0.7 is built for macOS 12 "Monterey" and up. It uses code-signed,
-universal binaries. 
+
+## News
+
+Release 0.8 is built for macOS 12 "Monterey" and up. It uses code-signed,
+universal binaries that run on Intel and Apple Silicon processors. It is not
+notarized by Apple and therefore requires special treatment during
+[installation](#installation) in order to work around quarantine.
+
+
+## What is it?
 
 EnvPane is a preference pane for macOS that lets you set environment variables
 for all applications, both GUI and terminal. Not only does it restore support
@@ -12,7 +20,7 @@ publishes your changes to the environment immediately, without the need to log
 out and back in. This works for changes made by manually editing
 `~/.MacOSX/environment.plist` as well via the preference pane UI.
 
-EnvPane 0.7 was tested under macOS 12 "Monterey" on Apple Silicon and Intel.
+EnvPane 0.8 was tested under macOS 12 "Monterey" on Apple Silicon and Intel.
 
 EnvPane 0.6 was tested under OS X 10.09 "Mavericks", OS X 10.11 "El Capitan" and
 macOS Sierra (10.12). It should also work on 10.10 "Yosemite". Apple
@@ -24,23 +32,39 @@ deprecation and broken APIs.
 [new_launchd]: http://newosxbook.com/articles/jlaunchctl.html
 [issue_11]: https://github.com/hschmidt/EnvPane/issues/11
 
-EnvPane does *not* work for setting the PATH environment variable. See the [FAQ
-on that topic](#why-cant-I-set-path-with-envpane).
+
+## Caveats
+
+EnvPane does *not* work for setting the PATH environment variable. See the
+[FAQ on that topic](#why-cant-I-set-path-with-envpane).
+
+EnvPane cannot be used to set `DYLD_…` variables. This is restriction imposed
+by macOS, I assume for security reasons.
+
+While EnvPane is code-signed, it is not yet notarized by Apple. Lack of
+notarization means that it will be quarantined when downloaded by a web
+browser. macOS refuses to run quarantined binaries, displaying a mildly
+misleading error message. A user [reports](#quarantine_workaround) that, on
+Ventura, right-clicking the preference pane in Finder and selecting _Open_
+overrides that restriction. I was not able to confirm that workaround for
+Monterey (I haven't upgraded to Ventura yet). For details, refer to #34.
+
+[quarantine_workaround]: https://github.com/hschmidt/EnvPane/issues/34#issuecomment-1438247197
 
 
 ## Download
 
-For convenience, the code-signed binary of EnvPane can be
-[downloaded][envpane_release] from GitHub. Alternatively you might want to grab
-the [source][envpane_repo] and [build it yourself](#building-from-source).
 
-[envpane_release]: https://github.com/hschmidt/EnvPane/releases/tag/releases%2F0.7
+The code-signed binary of EnvPane can be[downloaded][envpane_release] from
+GitHub. Be sure to read the [installation instructions].
+
+Alternatively you might want to grab the [source][envpane_repo] and [build it
+yourself](#building-from-source).
+
+[envpane_release]: https://github.com/hschmidt/EnvPane/releases/tag/releases%2F0.8
 [envpane_repo]: https://github.com/hschmidt/EnvPane
 
-<!-- break -->
 
-
-<a id="background"></a>
 ## Background
 
 Mac OS X releases prior to Mountain Lion (10.8) included support for
@@ -59,22 +83,31 @@ The agent reads `~/.MacOSX/environment.plist` and exports the environment
 variables from that file to the current user's `launchd` instance via the same
 API that is used by `launchctl setenv` and `launchctl unsetenv`.
 
-TODO: Mention /etc/launchd.conf and ~/.launchd.conf
+TODO: Mention `/etc/launchd.conf` and `~/.launchd.conf`
 
 [flashback]: http://support.apple.com/kb/TS4267?viewlocale=en_US
 
 
 ## Requirements
 
-macOS 12 "Monterey" or higher. 
+macOS 12 "Monterey" or higher.
 
 For release 0.6, Mac OS X 10.9 "Mavericks" or higher.'
 
 
 ## Installation
 
-1. Download [EnvPane.dmg][envpane_release]
-2. Open EnvPane.dmg, a Finder window opens
+### One liner
+
+Run this command in _Terminal_ to download and install EnvPane in a single step.
+
+`(cd ~/Library/PreferencePanes && rm -rf EnvPane.prefPane && curl -sL https://github.com/hschmidt/EnvPane/releases/download/releases%2F0.8/EnvPane-0.8.tar.bz2 | tar -xjf -)`
+
+### Traditional installation
+
+1. Download [EnvPane-0.8.dmg][envpane_release]
+2. Run `xattr -d com.apple.quarantine ~/Downloads/EnvPane-0.8.dmg` in Terminal
+2. Double-click the downloaded`EnvPane-0.8.dmg`. A Finder window opens
 3. Double-click the `EnvPane.pref-pane` file
 4. Choose _Install for this user only_
 
@@ -144,6 +177,11 @@ removing the preference pane doesn't leave orphaned files on the system. The
 
 
 ## Changelog
+
+
+### v0.8
+
+* Work around quarantine
 
 ### v0.7
 
