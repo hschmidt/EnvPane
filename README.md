@@ -106,7 +106,7 @@ Run this command in _Terminal_ to download and install EnvPane in a single step.
 ### Traditional installation
 
 1. Download [EnvPane-0.8.dmg][envpane_release]
-2. Run `xattr -d com.apple.quarantine ~/Downloads/EnvPane-0.8.dmg` in Terminal
+2. Run `xattr -dr com.apple.quarantine ~/Downloads/EnvPane-0.8.dmg` in Terminal
 2. Double-click the downloaded`EnvPane-0.8.dmg`. A Finder window opens
 3. Double-click the `EnvPane.pref-pane` file
 4. Choose _Install for this user only_
