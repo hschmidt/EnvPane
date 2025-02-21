@@ -365,7 +365,7 @@ PATH was meant to be a mere convenience for interactive shell use. If a
 security-sensitive system component needs to ensure that a particular binary is
 executed, it should specify that binary using an absolute PATH.
 
-Another rant: the fact that `launchtl config user path` has system-wide scope
+Another rant: the fact that `launchctl config user path` has system-wide scope
 and therefore needs sudo privileges is also amusing. If it's called "user" then
 it should be user-specific, not global.
 
